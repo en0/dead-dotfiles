@@ -7,7 +7,7 @@ has_platform() {
 }
 
 is_installed() {
-    which $1 1>/dev/null 2> /dev/null && true || false
+    [ -f $1 ]
 }
 
 run() {
