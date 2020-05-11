@@ -48,8 +48,9 @@ _remove() {
 }
 
 _info() {
-    echo "NeoVIM + Plug + MyVIMRC"
-    which /usr/local/bin/nvim 1>/dev/null 2> /dev/null && echo "Already installed"
+    echo -n "NeoVIM + Plug + MyVIMRC" && \
+        is_installed $NVIM_SHARE_TARGET/bin/nvim && \
+        echo " - [Installed]" || echo ""
 }
 
 run_if ubuntu18 arch osx

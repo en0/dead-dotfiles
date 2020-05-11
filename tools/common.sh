@@ -6,6 +6,10 @@ has_platform() {
     false
 }
 
+is_installed() {
+    which $1 1>/dev/null 2> /dev/null && true || false
+}
+
 run() {
     case "$DOTFILES_COMMAND" in
         install) echo "Installing module \"$DOTFILES_CURRENT_MOD_NAME\"" && _install ;;
