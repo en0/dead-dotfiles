@@ -1,17 +1,33 @@
 source $DOTFILES_TOOL_PATH/common.sh
 
 CMD=$DOTFILES_CURRENT_MOD_DIR
-TARGET=/usr/local/bin/nvim
+NVIM_SHARE_TARGET=/usr/local
 
 ubuntu_install() {
+    # Install vim
     curl -LO https://github.com/neovim/neovim/releases/download/stable/nvim.appimage
-    sudo install -o root -g root -m 755 ./nvim.appimage $TARGET
+    sudo install -o root -g root -m 755 -d $NVIM_SHARE_TARGET/share/nvim
+    sudo install -o root -g root -m 755 ./nvim.appimage $NVIM_SHARE_TARGET/share/nvim/nvim
+    sudo ln -s $NVIM_SHARE_TARGET/share/nvim/nvim $NVIM_SHARE_TARGET/bin/nvim
+
+    sudo apt-get install -y python-virtualenv python3-virtualenv
+
+    # install python2 virtual env
+    sudo python2 -m virtualenv $NVIM_SHARE_TARGET/share/nvim/python2
+    sudo $NVIM_SHARE_TARGET/share/nvim/python2/bin/pip install pynvim
+
+    # install python3 virtual env
+    sudo python3 -m venv $NVIM_SHARE_TARGET/share/nvim/python3
+    sudo $NVIM_SHARE_TARGET/share/nvim/python3/bin/pip install pynvim
+
+    # install vim-plug
     sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 }
 
 ubuntu_remove() {
-    sudo rm -rf /usr/local/bin/nvim
+    sudo unlink $NVIM_SHARE_TARGET/bin/nvim
+    sudo rm -rf $NVIM_SHARE_TARGET/share/nvim
     rm -rf "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim
 }
 
@@ -23,7 +39,6 @@ _install() {
     do
         ln -s $f ~/.config/nvim/init.d/$(basename $f)
     done
-    # TODO: Install python package
     nvim --headless +PlugInstall +qall
 }
 
