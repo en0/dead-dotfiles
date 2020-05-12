@@ -14,7 +14,9 @@ _remove() {
 }
 
 _info() {
-    echo -n "Workspace - A set of functions to make using mutiple terminals easier" 
+    echo -n "Workspace - Terminal as an IDE" && \
+        is_installed "$ENV.d/workspace.env" && \
+        echo " - [Installed]" || echo ""
 }
 
 run_if ubuntu18 arch osx
