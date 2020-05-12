@@ -24,6 +24,7 @@ for MOD in ${DOTFILES_MODULES[@]}
 do
     export DOTFILES_CURRENT_MOD_NAME=$(echo $MOD)
     export DOTFILES_CURRENT_MOD_DIR=$DOTFILES_MOD_PATH/$MOD
+    export DOTFILES_ENV
     temp_dir=$(mktemp -d)
     cd ${temp_dir}
     $DOTFILES_CURRENT_MOD_DIR/module.sh
