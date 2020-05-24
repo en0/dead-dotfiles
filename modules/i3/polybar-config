@@ -301,20 +301,24 @@ margin-bottom = 0
 
 [module/ws-active]
 type = custom/script
+interval = 30
 exec = basename $(cat ~/.cache/ws-workspaces/active)
 exec-if = [ -f $HOME/.cache/ws-workspaces/active ]
 content = Some random text
 
 format = <label>
+format-padding = 0
 format-foreground = ${colors.yellow}
 label = %output:0:15:...%
 
 [module/ws-active-git]
 type = custom/script
+interval = 30
 exec = git --git-dir=$(cat ~/.cache/ws-workspaces/active)/.git branch
-exec-if = [ -f $HOME/.cache/ws-workspaces/active ]
+exec-if = [ -f $HOME/.cache/ws-workspaces/active ] && [ -d $(cat $HOME/.cache/ws-workspaces/active)/.git ]
 content = Some random text
 
 format = <label>
 format-foreground = ${colors.green}
+format-padding = 0
 label = %output:0:15:...%
