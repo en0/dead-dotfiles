@@ -161,8 +161,8 @@ for_window [window_role="pop-up"] floating enabled
 # i3 Gaps
 for_window [class=".*"] border pixel 1
 gaps inner 10
-smart_gaps on
-#smart_borders on
+smart_gaps yes
+smart_borders on
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
