@@ -5,13 +5,15 @@ ENV=$DOTFILES_ENV
 
 _install() {
     install -o $USER -g $USER -m 750 -d $HOME/.config/i3
-    ln -s $MD/config $HOME/.config/i3/config
+    install -o $USER -g $USER -m 750 -d $HOME/.config/polybar
+    ln -s $MD/i3-config $HOME/.config/i3/config
+    ln -s $MD/polyboar-config $HOME/.config/polybar/config
     ln -s $MD/scripts $HOME/.config/i3/scripts
 }
 
 _remove() {
-    unlink $HOME/.config/i3/config
     rm -rf $HOME/.config/i3
+    rm -rf $HOME/.config/polybar
 }
 
 _info() {

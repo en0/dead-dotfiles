@@ -244,29 +244,6 @@ bindsym $mod+i exec i3-input -F 'rename workspace to "%s"' -P 'Rename Workspace:
 bindsym $mod+x exec i3-input -P 'EXEC: '
 bindsym $mod+u [urgent=latest] focus
 
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
-bar {
-    workspace_buttons yes
-    position bottom
-    #status_command py3status -b --config ~/.config/i3/status.conf
-    status_command i3status --config ~/.config/i3/status.conf
-    #status_command i3status
-
-    colors {
-        background $black
-        statusline $white
-        separator  $blue
-
-        #                  Border        Background   Text
-        focused_workspace  $xgrey3       $xgrey3      $orange
-        active_workspace   $xgrey3       $xgrey3      $white
-        inactive_workspace $xgrey3       $xgrey1      $white
-        urgent_workspace   $red          $red         $black
-        binding_mode       $green        $green       $black
-    }
-}
-
 ## Notification engine
 exec dunst -config ~/.dunstrc
 
@@ -276,3 +253,5 @@ exec --no-startup-id ~/.config/hw/layout_screens.py
 ## Reset last background
 exec --no-startup-id "sh -c \"cat ~/.fehbg | sh\""
 #exec --no-startup-id picom
+
+exec_always --no-startup-id $HOME/.config/i3/scripts/launch-polybar.sh
