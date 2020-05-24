@@ -14,9 +14,7 @@ _remove() {
 }
 
 _info() {
-    echo -n "Powerline Fonts - patched fonts with extra glyphs" && \
-        is_installed "$ENV.d/workspace.env" && \
-        echo " - [Installed]" || echo ""
+    echo -n "Powerline Fonts - patched fonts with extra glyphs"
 }
 
 run_if ubuntu18 arch osx
