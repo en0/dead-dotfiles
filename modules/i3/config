@@ -54,6 +54,7 @@ client.background       $black
 
 # Font
 font pango:DejaVu Sans Mono 11
+set $xfont -*-dejavu sans mono-medium-r-normal--13-80-*-*-*-*-iso10646-1
 
 # Screen Lock
 bindsym $mod+o exec i3lock -c $xgrey1
@@ -62,14 +63,15 @@ bindsym $mod+o exec i3lock -c $xgrey1
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec alacritty
+bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Shift+Return exec $HOME/.config/i3/scripts/ws-activate-term.sh i3-sensible-terminal
 
 # kill focused window
 bindsym $mod+q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+p exec --no-startup-id i3-dmenu-desktop --dmenu="dmenu -nf '#D0BFA1' -nb '#444444' -sb '#2C78BF' -sf '#D0BFA1' -fn 'monospace-10' -p 'App >' -fn '-*-dejavu sans mono-medium-r-normal--13-80-*-*-*-*-iso10646-1'"
-bindsym $mod+d exec dmenu_run -nf '#D0BFA1' -nb '#444444' -sb '#2C78BF' -sf '#D0BFA1' -fn 'monospace-10' -p 'Run >' -fn '-*-dejavu sans mono-medium-r-normal--13-80-*-*-*-*-iso10646-1'
+bindsym $mod+p exec --no-startup-id i3-dmenu-desktop --dmenu="dmenu -nf '$white' -nb '$black' -sb '$xgrey3' -sf '$orange' -p 'App' -fn '$xfont'"
+bindsym $mod+d exec --no-startup-id dmenu_run -nf '$white' -nb '$black' -sb '$xgrey3' -sf '$orange' -p 'Run' -fn '$xfont'
 
 # change focus
 bindsym $mod+h focus left

@@ -1,49 +1,51 @@
-;==========================================================
-;
-;
-;   ██████╗  ██████╗ ██╗  ██╗   ██╗██████╗  █████╗ ██████╗
-;   ██╔══██╗██╔═══██╗██║  ╚██╗ ██╔╝██╔══██╗██╔══██╗██╔══██╗
-;   ██████╔╝██║   ██║██║   ╚████╔╝ ██████╔╝███████║██████╔╝
-;   ██╔═══╝ ██║   ██║██║    ╚██╔╝  ██╔══██╗██╔══██║██╔══██╗
-;   ██║     ╚██████╔╝███████╗██║   ██████╔╝██║  ██║██║  ██║
-;   ╚═╝      ╚═════╝ ╚══════╝╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
-;
-;
-;   To learn more about how to configure Polybar
-;   go to https://github.com/polybar/polybar
-;
-;   The README contains a lot of information
-;
-;==========================================================
-
 [colors]
-;background = ${xrdb:color0:#222}
-background = #121212
-background-alt = #121212
-;foreground = ${xrdb:color7:#222}
-foreground = #2C78BF
-foreground-alt = #555
-primary = #ffb52a
-secondary = #e60053
-alert = #bd2c40
+black         = #1C1B19
+red           = #EF2F27
+green         = #519F50
+yellow        = #FBB829
+blue          = #2C78BF
+magenta       = #E02C6D
+cyan          = #0AAEB3
+white         = #D0BFA1
+brightblack   = #918175
+brightred     = #F75341
+brightgreen   = #98BC37
+brightyellow  = #FED06E
+brightblue    = #68A8E4
+brightmagenta = #FF5C8F
+brightcyan    = #53FDE9
+brightwhite   = #FCE8C3
+orange        = #FF5F00
+brightorange  = #FF8700
+hardblack     = #121212
+xgrey1        = #262626
+xgrey2        = #303030
+xgrey3        = #3A3A3A
+xgrey4        = #444444
+xgrey5        = #4E4E4E
+xgrey6        = #585858
+
+[fonts]
+
+first = DejaVuSansMono:size=10;1
+second = Ionicons:size=10;0
+third = FontAwesome5Free:size=10;0
 
 [bar/primary]
 monitor = ${env:MONITOR:HDMI-A-0}
 width = 100%
-height = 25
-;offset-x = 1%
-;offset-y = 1%
+height = 20
 radius = 0
 fixed-center = false
 
-background = ${colors.background}
-foreground = ${colors.foreground}
+background = ${colors.black}
+foreground = ${colors.brightblack}
 
-line-size = 3
-line-color = #f00
+line-size = 2
+line-color = ${colors.orange}
 
-border-size = 0
-border-color = #00000000
+border-size = 1
+border-color = ${colors.black}
 
 padding-left = 0
 padding-right = 2
@@ -51,94 +53,268 @@ padding-right = 2
 module-margin-left = 1
 module-margin-right = 2
 
-font-0 = "DejaVu Sans Mono:size=8;4"
-font-1 = "Font Awesome 5 Free:style=Regular:pixelsize=8;1"
-font-2 = "Font Awesome 5 Free:style=Solid:pixelsize=8;1"
-font-3 = "Font Awesome 5 Brands:pixelsize=8;1"
+font-0 = ${fonts.first}
+font-1 = ${fonts.second}
+font-2 = ${fonts.third}
 
-modules-left = ewmh
-#modules-center = mpd
-#modules-right = filesystem xbacklight alsa pulseaudio xkeyboard memory cpu wlan eth battery temperature date powermenu
+modules-left = i3
+modules-center = 
+modules-right = pulseaudio memory date
 
 tray-position = right
 tray-padding = 2
-;tray-background = #0063ff
 
-;wm-restack = bspwm
-;wm-restack = i3
+wm-restack = i3
+;override-redirect = false
 
-;override-redirect = true
+[bar/secondary]
+monitor = ${env:MONITOR:HDMI-A-1}
+width = 100%
+height = 20
+radius = 0
+fixed-center = false
 
-;scroll-up = bspwm-desknext
-;scroll-down = bspwm-deskprev
+background = ${colors.black}
+foreground = ${colors.brightblack}
 
-;scroll-up = i3wm-wsnext
-;scroll-down = i3wm-wsprev
+line-size = 2
+line-color = ${colors.orange}
 
-cursor-click = pointer
-cursor-scroll = ns-resize
+border-size = 1
+border-color = ${colors.black}
 
-[module/ewmh]
-type = internal/xworkspaces
-pin-workspaces = false
-enable-click = true
-enable-scroll = true
-icon-0 = 1;
-icon-1 = 2;
-icon-2 = 3;
-icon-3 = 4;
-icon-4 = 5;
-icon-5 = 6;
-icon-6 = 7;
-icon-7 = 8;
-icon-8 = 9;
-icon-9 = 0;
-icon-default = 
+padding-left = 0
+padding-right = 2
 
-; Available tags:
-;   <label-monitor>
-;   <label-state> - gets replaced with <label-(active|urgent|occupied|empty)>
-; Default: <label-state>
-format = <label-state>
+module-margin-left = 1
+module-margin-right = 2
 
-; Available tokens:
-;   %name%
-; Default: %name%
-label-monitor = %name%
+font-0 = ${fonts.first}
+font-1 = ${fonts.second}
+font-2 = ${fonts.third}
 
-; Available tokens:
-;   %name%
-;   %icon%
-;   %index%
-; Default: %icon%  %name%
-label-active = %icon%
-label-active-foreground = #ffffff
-label-active-background = #3f3f3f
-label-active-underline = #fba922
+modules-left = i3
+modules-center = 
+modules-right = filesystem wlan eno1 cpu temperature
 
-; (unreleased)
-; Available tokens:
-;   %name%
-;   %icon%
-;   %index%
-; Default: %icon%  %name%
-label-occupied = %icon%
-label-occupied-underline = #555555
+tray-position = right
+tray-padding = 2
 
-; Available tokens:
-;   %name%
-;   %icon%
-;   %index%
-; Default: %icon%  %name%
+wm-restack = i3
+;override-redirect = false
+
+[module/xwindow]
+type = internal/xwindow
+label = %title:0:30:...%
+
+[module/filesystem]
+type = internal/fs
+interval = 25
+
+mount-0 = /
+label-mounted = : %free%
+label-mounted-foreground = ${colors.brightblack}
+label-unmounted = %mountpoint% not mounted
+label-unmounted-foreground = ${colors.brightblack}
+
+[module/i3]
+
+type = internal/i3
+index-sort = true
+wrapping-scroll = false
+pin-workspaces = true
+
+ws-icon-0 = 1;
+ws-icon-1 = 2;
+ws-icon-2 = 3;
+ws-icon-3 = 4;
+ws-icon-4 = 5;
+ws-icon-5 = 6;
+ws-icon-6 = 7;
+ws-icon-7 = 8;
+ws-icon-8 = 9;
+ws-icon-9 = 0;
+;ws-icon-default = 
+
+format = <label-state> <label-mode>
+format-padding = 1
+
+label-mode-padding = 0
+label-mode-foreground = ${colors.green}
+label-mode-background = ${colors.black}
+label-mode-underline = ${colors.green}
+
+label-focused = %icon%
+label-unfocused = %icon%
+label-visible = %icon%
 label-urgent = %icon%
-label-urgent-foreground = #000000
-label-urgent-background = #bd2c40
-label-urgent-underline = #9b0a20
 
-; Available tokens:
-;   %name%
-;   %icon%
-;   %index%
-; Default: %icon%  %name%
-label-empty = %icon%
-label-empty-foreground = #55
+label-focused-padding = 1
+label-unfocused-padding = 1
+label-visible-padding = 1
+label-urgent-padding = 1
+
+label-focused-background = ${colors.black}
+label-focused-foreground = ${colors.brightorange}
+label-focused-underline = ${colors.brightorange}
+
+label-unfocused-background = ${colors.black}
+label-unfocused-foreground = ${colors.brightblack}
+;label-unfocused-underline = ${colors.brightblack}
+
+label-urgent-background = ${colors.black}
+label-urgent-foreground = ${colors.red}
+label-urgent-underline = ${colors.red}
+
+;label-visible-underline = ${colors.red}
+;label-visible-background = ${colors.black}
+
+label-separator = " "
+label-separator-padding = 0
+label-separator-background = ${colors.black}
+
+[module/cpu]
+type = internal/cpu
+interval = 0.5
+format-prefix = ""
+format-prefix-foreground = ${colors.brightblack}
+format = <label> <ramp-coreload>
+label = %percentage:3%%
+label-foreground = ${colors.brightblack}
+
+; Spacing between individual per-core ramps
+ramp-coreload-spacing = 0
+ramp-coreload-0 = ▁
+ramp-coreload-1 = ▂
+ramp-coreload-2 = ▃
+ramp-coreload-3 = ▄
+ramp-coreload-4 = ▅
+ramp-coreload-5 = ▆
+ramp-coreload-6 = ▇
+ramp-coreload-7 = █
+ramp-coreload-foreground = ${colors.red}
+
+[module/memory]
+type = internal/memory
+interval = 2
+format-prefix = ""
+format-prefix-foreground = ${colors.brightblack}
+format = <label> <bar-used>
+label = %percentage_used:3%%
+label-foreground = ${colors.brightblack}
+bar-used-width = 20
+
+bar-used-indicator = 
+bar-used-fill = 
+bar-used-empty = 
+
+bar-used-foreground-0 = ${colors.green}
+bar-used-foreground-1 = ${colors.yellow}
+bar-used-foreground-2 = ${colors.orange}
+bar-used-foreground-3 = ${colors.red}
+;bar-used-fill-foreground = ${colors.brightorange}
+bar-used-empty-foreground = ${colors.brightblack}
+
+[module/wlan]
+type = internal/network
+interface = wlo1
+interval = 3.0
+
+format-connected-underline = ${colors.green}
+format-connected-prefix = " "
+format-connected-prefix-foreground = ${colors.brightblack}
+label-connected = %local_ip% (%essid%)
+label-connected-foreground = ${colors.brightblack}
+
+format-disconnected-prefix = " "
+format-disconnected-prefix-foreground = ${colors.brightblack}
+format-disconnected-underline = ${colors.red}
+label-disconnected = NO LINK
+
+[module/eno1]
+type = internal/network
+interface = eno1
+interval = 3.0
+
+format-connected-underline = ${colors.green}
+format-connected-prefix = " "
+format-connected-prefix-foreground = ${colors.brightblack}
+label-connected = %local_ip%
+
+format-disconnected-prefix = " "
+format-disconnected-prefix-foreground = ${colors.brightblack}
+
+label-disconnected = NO LINK
+label-disconnected-foreground = ${colors.brightblack}
+format-disconnected-underline = ${colors.red}
+
+[module/date]
+type = internal/date
+interval = 5
+
+date =
+date-alt = " %a, %b %d"
+
+time = %I:%M %p
+time-alt = %I:%M %p
+
+format-prefix = 
+format-prefix-foreground = ${colors.brightblack}
+;format-underline = ${colors.blue}
+
+label = %date% %time%
+label-foreground = ${colors.brightblack}
+
+[module/pulseaudio]
+type = internal/pulseaudio
+
+format-volume = <label-volume> <bar-volume>
+label-volume =  %percentage%%
+label-volume-foreground = ${colors.brightblack}
+
+format-muted = <label-muted> <bar-volume>
+label-muted =  MUTE
+label-muted-foreground = ${colors.brightblack}
+
+bar-volume-width = 10
+bar-volume-foreground-0 = #55aa55
+bar-volume-foreground-1 = #55aa55
+bar-volume-foreground-2 = #55aa55
+bar-volume-foreground-3 = #55aa55
+bar-volume-foreground-4 = #55aa55
+bar-volume-foreground-5 = #f5a70a
+bar-volume-foreground-6 = #ff5555
+bar-volume-gradient = false
+bar-volume-indicator = 
+bar-volume-fill = 
+bar-volume-empty = 
+bar-volume-empty-foreground = ${colors.xgrey6}
+
+[module/temperature]
+type = internal/temperature
+thermal-zone = 1,2,3
+warn-temperature = 60
+
+format-prefix = " "
+format = <label>
+format-foreground = ${colors.brightblack}
+format-underline = ${colors.green}
+format-warn = <label-warn>
+format-warn-underline = ${colors.red}
+
+label = %temperature-c%
+label-foreground = ${colors.brightblack}
+label-warn = %temperature-c%
+label-warn-foreground = ${colors.red}
+
+[settings]
+screenchange-reload = true
+compositing-background = xor
+;compositing-background = screen
+;compositing-foreground = source
+;compositing-border = over
+;pseudo-transparency = true
+
+[global/wm]
+margin-top = 0
+margin-bottom = 0
