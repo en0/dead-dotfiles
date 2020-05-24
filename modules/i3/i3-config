@@ -75,8 +75,8 @@ bindsym $mod+Shift+Return exec $HOME/.config/i3/scripts/ws-activate-term.sh i3-s
 bindsym $mod+q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+p exec --no-startup-id i3-dmenu-desktop --dmenu="dmenu -nf '$white' -nb '$black' -sb '$xgrey3' -sf '$orange' -p 'App' -fn '$xfont'"
-bindsym $mod+d exec --no-startup-id dmenu_run -nf '$white' -nb '$black' -sb '$xgrey3' -sf '$orange' -p 'Run' -fn '$xfont'
+bindsym $mod+p exec --no-startup-id i3-dmenu-desktop --dmenu="dmenu -nf '$white' -nb '$black' -sb '$xgrey3' -sf '$yellow' -p 'App' -fn '$xfont'"
+bindsym $mod+d exec --no-startup-id dmenu_run -nf '$white' -nb '$black' -sb '$xgrey3' -sf '$yellow' -p 'Run' -fn '$xfont'
 
 # change focus
 bindsym $mod+h focus left
