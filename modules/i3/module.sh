@@ -9,6 +9,7 @@ _install() {
     ln -s $MD/i3-config $HOME/.config/i3/config
     ln -s $MD/polybar-config $HOME/.config/polybar/config
     ln -s $MD/scripts $HOME/.config/i3/scripts
+    ln -s $MD/wallpaper $HOME/.config/i3/wallpaper
 }
 
 _remove() {
