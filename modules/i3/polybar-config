@@ -26,12 +26,10 @@ xgrey5        = #4E4E4E
 xgrey6        = #585858
 
 [common]
-
 font-0 = DejaVuSansMono:size=10;1
 font-1 = Ionicons:size=10;0
 font-2 = FontAwesome5Free:size=10;0
 line-size = 1
-
 
 [bar/primary]
 monitor = ${env:MONITOR:HDMI-A-0}
@@ -44,7 +42,7 @@ background = ${colors.black}
 foreground = ${colors.brightblack}
 
 line-size = ${common.line-size}
-line-color = ${colors.orange}
+line-color = ${colors.yellow}
 
 border-size = 1
 border-color = ${colors.black}
@@ -61,7 +59,7 @@ font-2 = ${common.font-2}
 
 modules-left = i3
 modules-center = 
-modules-right = pulseaudio memory date
+modules-right = pulseaudio filesystem memory cpu temperature date
 
 tray-position = right
 tray-padding = 2
@@ -80,7 +78,7 @@ background = ${colors.black}
 foreground = ${colors.brightblack}
 
 line-size = ${common.line-size}
-line-color = ${colors.orange}
+line-color = ${colors.yellow}
 
 border-size = 1
 border-color = ${colors.black}
@@ -97,7 +95,7 @@ font-2 = ${common.font-2}
 
 modules-left = i3
 modules-center = 
-modules-right = filesystem wlan eno1 cpu temperature
+modules-right = wlan eno1 date
 
 tray-position = right
 tray-padding = 2
@@ -115,9 +113,7 @@ interval = 25
 
 mount-0 = /
 label-mounted = : %free%
-label-mounted-foreground = ${colors.brightblack}
 label-unmounted = %mountpoint% not mounted
-label-unmounted-foreground = ${colors.brightblack}
 
 [module/i3]
 
@@ -157,11 +153,10 @@ label-visible-padding = 1
 label-urgent-padding = 1
 
 label-focused-background = ${colors.black}
-label-focused-foreground = ${colors.brightorange}
-label-focused-underline = ${colors.brightorange}
+label-focused-foreground = ${colors.yellow}
+label-focused-underline = ${colors.yellow}
 
 label-unfocused-background = ${colors.black}
-label-unfocused-foreground = ${colors.brightblack}
 ;label-unfocused-underline = ${colors.brightblack}
 
 label-urgent-background = ${colors.black}
@@ -179,10 +174,8 @@ label-separator-background = ${colors.black}
 type = internal/cpu
 interval = 0.5
 format-prefix = ""
-format-prefix-foreground = ${colors.brightblack}
 format = <label> <ramp-coreload>
 label = %percentage:3%%
-label-foreground = ${colors.brightblack}
 
 ; Spacing between individual per-core ramps
 ramp-coreload-spacing = 0
@@ -200,10 +193,8 @@ ramp-coreload-foreground = ${colors.red}
 type = internal/memory
 interval = 2
 format-prefix = ""
-format-prefix-foreground = ${colors.brightblack}
 format = <label> <bar-used>
 label = %percentage_used:3%%
-label-foreground = ${colors.brightblack}
 bar-used-width = 20
 
 bar-used-indicator = 
@@ -212,10 +203,9 @@ bar-used-empty = 
 
 bar-used-foreground-0 = ${colors.green}
 bar-used-foreground-1 = ${colors.yellow}
-bar-used-foreground-2 = ${colors.orange}
+bar-used-foreground-2 = ${colors.yellow}
 bar-used-foreground-3 = ${colors.red}
-;bar-used-fill-foreground = ${colors.brightorange}
-bar-used-empty-foreground = ${colors.brightblack}
+;bar-used-fill-foreground = ${colors.yellow}
 
 [module/wlan]
 type = internal/network
@@ -224,12 +214,9 @@ interval = 3.0
 
 format-connected-underline = ${colors.green}
 format-connected-prefix = " "
-format-connected-prefix-foreground = ${colors.brightblack}
 label-connected = %local_ip% (%essid%)
-label-connected-foreground = ${colors.brightblack}
 
 format-disconnected-prefix = " "
-format-disconnected-prefix-foreground = ${colors.brightblack}
 format-disconnected-underline = ${colors.red}
 label-disconnected = NO LINK
 
@@ -240,14 +227,11 @@ interval = 3.0
 
 format-connected-underline = ${colors.green}
 format-connected-prefix = " "
-format-connected-prefix-foreground = ${colors.brightblack}
 label-connected = %local_ip%
 
 format-disconnected-prefix = " "
-format-disconnected-prefix-foreground = ${colors.brightblack}
 
 label-disconnected = NO LINK
-label-disconnected-foreground = ${colors.brightblack}
 format-disconnected-underline = ${colors.red}
 
 [module/date]
@@ -261,22 +245,18 @@ time = %I:%M %p
 time-alt = %I:%M %p
 
 format-prefix = 
-format-prefix-foreground = ${colors.brightblack}
 ;format-underline = ${colors.blue}
 
 label = %date% %time%
-label-foreground = ${colors.brightblack}
 
 [module/pulseaudio]
 type = internal/pulseaudio
 
 format-volume = <label-volume> <bar-volume>
 label-volume =  %percentage%%
-label-volume-foreground = ${colors.brightblack}
 
 format-muted = <label-muted> <bar-volume>
 label-muted =  MUTE
-label-muted-foreground = ${colors.brightblack}
 
 bar-volume-width = 10
 bar-volume-foreground-0 = #55aa55
@@ -299,13 +279,11 @@ warn-temperature = 60
 
 format-prefix = " "
 format = <label>
-format-foreground = ${colors.brightblack}
 format-underline = ${colors.green}
 format-warn = <label-warn>
 format-warn-underline = ${colors.red}
 
 label = %temperature-c%
-label-foreground = ${colors.brightblack}
 label-warn = %temperature-c%
 label-warn-foreground = ${colors.red}
 
