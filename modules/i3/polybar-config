@@ -57,7 +57,7 @@ font-0 = ${common.font-0}
 font-1 = ${common.font-1}
 font-2 = ${common.font-2}
 
-modules-left = i3
+modules-left = i3 ws-active-git ws-active
 modules-center = 
 modules-right = pulseaudio filesystem memory cpu temperature date
 
@@ -298,3 +298,23 @@ compositing-background = xor
 [global/wm]
 margin-top = 0
 margin-bottom = 0
+
+[module/ws-active]
+type = custom/script
+exec = basename $(cat ~/.cache/ws-workspaces/active)
+exec-if = [ -f $HOME/.cache/ws-workspaces/active ]
+content = Some random text
+
+format = <label>
+format-foreground = ${colors.yellow}
+label = %output:0:15:...%
+
+[module/ws-active-git]
+type = custom/script
+exec = git --git-dir=$(cat ~/.cache/ws-workspaces/active)/.git branch
+exec-if = [ -f $HOME/.cache/ws-workspaces/active ]
+content = Some random text
+
+format = <label>
+format-foreground = ${colors.green}
+label = %output:0:15:...%
