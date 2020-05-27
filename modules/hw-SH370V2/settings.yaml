@@ -1,0 +1,13 @@
+display:
+    primary: HDMI-1
+    secondary: HDMI-2
+    layout: xrandr --output HDMI-2 --left-of HDMI-1
+
+i3:
+    gaps: True
+    with_kube_tools: True
+
+polybar:
+    networks:
+     - enp1s0
+     - enp2s0

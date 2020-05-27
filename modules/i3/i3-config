@@ -175,6 +175,12 @@ bindsym $mod+Tab workspace back_and_forth
 # Other Bindings
 bindsym $mod+c exec --no-startup-id $HOME/.config/i3/scripts/screenshot.sh
 bindsym $mod+Shift+m exec --no-startup-id $HOME/.config/i3/scripts/music.sh
+bindsym $mod+Shift+s exec --no-startup-id $HOME/.config/i3/scripts/malstr.sh
+
+{% if i3.with_kube_tools -%}
+# kube tools
+bindsym $mod+Shift+x exec --no-startup-id $HOME/.config/i3/scripts/kube-context-picker.sh
+{% endif -%}
 
 # resize window (you can also use the mouse for that)
 mode "resize" {

@@ -15,7 +15,7 @@ _remove() {
 }
 
 _info() {
-    echo -n "Hardware Profile - Profile for quark" && \
+    echo -n "Hardware Profile - Profile for SH370v2" && \
         is_installed $TARGET && \
         echo " - [Installed]" || echo ""
 }
