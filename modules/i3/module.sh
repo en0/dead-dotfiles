@@ -6,10 +6,9 @@ ENV=$DOTFILES_ENV
 _install() {
     install -o $USER -g $USER -m 750 -d $HOME/.config/i3
     install -o $USER -g $USER -m 750 -d $HOME/.config/polybar
-    ln -s $MD/i3-config $HOME/.config/i3/config
-    ln -s $MD/polybar-config $HOME/.config/polybar/config
-    ln -s $MD/scripts $HOME/.config/i3/scripts
-    ln -s $MD/wallpaper $HOME/.config/i3/wallpaper
+    [ ! -d $HOME/.config/i3/scripts ] && ln -s $MD/scripts $HOME/.config/i3/scripts
+    [ ! -d $HOME/.config/i3/wallpaper ] && ln -s $MD/wallpaper $HOME/.config/i3/wallpaper
+    [ ! -f $HOME/.config/i3/config ] && $MD/scripts/render-configs.sh
 }
 
 _remove() {

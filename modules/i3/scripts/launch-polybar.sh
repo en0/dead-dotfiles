@@ -1,6 +1,13 @@
 #!/usr/bin/env bash
 
+for opt in $@
+do
+    [[ "primary" == "$opt" ]] && PRIMARY="yes"
+    [[ "secondary" == "$opt" ]] && SECONDARY="yes"
+done
+
 killall -q polybar
 while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
-polybar primary -r &
-polybar secondary -r &
+
+[ ! -z "$PRIMARY" ] && polybar primary -r &
+[ ! -z "$SECONDARY" ] && polybar secondary -r &

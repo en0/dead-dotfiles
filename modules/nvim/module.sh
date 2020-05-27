@@ -73,8 +73,9 @@ _remove() {
 }
 
 _info() {
+    _installed_at=$(which nvim 2>/dev/null || echo "no-exist")
     echo -n "NeoVIM + Plug + MyVIMRC" && \
-        is_installed $NVIM_SHARE_TARGET/bin/nvim && \
+        is_installed $_installed_at && \
         echo " - [Installed]" || echo ""
 }
 

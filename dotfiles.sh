@@ -20,6 +20,8 @@ then
     exit
 fi
 
+source $DOTFILES_TOOL_PATH/pyenv.sh
+
 for MOD in ${DOTFILES_MODULES[@]}
 do
     export DOTFILES_CURRENT_MOD_NAME=$(echo $MOD)
