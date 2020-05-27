@@ -5,9 +5,11 @@ display:
 
 i3:
     gaps: True
-    with_kube_tools: True
 
 polybar:
     networks:
      - enp1s0
      - enp2s0
+
+common:
+    with_kube_tools: True

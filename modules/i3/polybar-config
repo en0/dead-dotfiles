@@ -60,7 +60,7 @@ font-0 = ${common.font-0}
 font-1 = ${common.font-1}
 font-2 = ${common.font-2}
 
-modules-left = i3 ws-active-git ws-active
+modules-left = i3 sep {% if common.with_kube_tools -%} kube-context kube-namespace sep {% endif -%} ws-active ws-active-git 
 modules-center = 
 modules-right = pulseaudio filesystem memory cpu temperature date
 
@@ -144,9 +144,9 @@ format = <label-state> <label-mode>
 format-padding = 1
 
 label-mode-padding = 0
-label-mode-foreground = ${colors.green}
+label-mode-foreground = ${colors.magenta}
 label-mode-background = ${colors.black}
-label-mode-underline = ${colors.green}
+label-mode-underline = ${colors.magenta}
 
 label-focused = %icon%
 label-unfocused = %icon%
@@ -283,7 +283,7 @@ type = custom/script
 interval = 30
 exec = basename $(cat ~/.cache/ws-workspaces/active)
 exec-if = [ -f $HOME/.cache/ws-workspaces/active ]
-content = Some random text
+content = loading...
 
 format = <label>
 format-padding = 0
@@ -295,12 +295,42 @@ type = custom/script
 interval = 30
 exec = git --git-dir=$(cat ~/.cache/ws-workspaces/active)/.git branch
 exec-if = [ -f $HOME/.cache/ws-workspaces/active ] && [ -d $(cat $HOME/.cache/ws-workspaces/active)/.git ]
-content = Some random text
+content = loading...
 
 format = <label>
 format-foreground = ${colors.green}
 format-padding = 0
-label = %output:0:15:...%
+label = (%output:0:40:...%)
+
+[module/sep]
+type = custom/text
+content = |
+
+{% if common.with_kube_tools -%}
+[module/kube-context]
+type = custom/script
+interval = 30
+exec = kubectx --current
+exec-if = which kubectx
+content = loading...
+format = <label>
+format-foreground = ${colors.green}
+format-padding = 0
+label = Kube: %output:0:15:...%
+click-left = $HOME/.config/i3/scripts/kube-context-picker.sh
+
+[module/kube-namespace]
+type = custom/script
+interval = 30
+exec = kubens --current
+exec-if = which kubens
+content = loading...
+format = <label>
+format-foreground = ${colors.magenta}
+format-padding = 0
+label = (%output:0:15:...%)
+click-left = $HOME/.config/i3/scripts/kube-ns-picker.sh
+{% endif -%}
 
 {% for iface in polybar.networks -%}
 [module/{{iface}}]
