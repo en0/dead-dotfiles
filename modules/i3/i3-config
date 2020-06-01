@@ -176,6 +176,8 @@ bindsym $mod+Tab workspace back_and_forth
 bindsym $mod+c exec --no-startup-id $HOME/.config/i3/scripts/screenshot.sh
 bindsym $mod+Shift+m exec --no-startup-id $HOME/.config/i3/scripts/music.sh
 bindsym $mod+Shift+s exec --no-startup-id $HOME/.config/i3/scripts/malstr.sh
+bindsym $mod+z exec --no-startup-id $HOME/.config/i3/scripts/alacritty-fontsize.sh "+"
+bindsym $mod+Shift+z exec --no-startup-id $HOME/.config/i3/scripts/alacritty-fontsize.sh "-"
 
 {% if common.with_kube_tools -%}
 # kube tools
