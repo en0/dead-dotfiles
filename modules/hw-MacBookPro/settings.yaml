@@ -1,0 +1,12 @@
+display:
+    primary: eDP-1
+
+i3:
+    gaps: False
+
+polybar:
+    networks:
+     - wlp3s0
+
+common:
+    with_kube_tools: False
