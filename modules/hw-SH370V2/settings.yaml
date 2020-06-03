@@ -1,7 +1,7 @@
 display:
-    primary: HDMI-1
-    secondary: HDMI-2
-    layout: xrandr --output HDMI-2 --left-of HDMI-1
+    primary: HDMI-2
+    secondary: DP-1
+    layout: xrandr --output DP-1 --left-of HDMI-2
 
 i3:
     gaps: True
