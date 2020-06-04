@@ -1,16 +1,29 @@
-display:
-    primary: HDMI-A-0
-    secondary: HDMI-A-1
-    #layout: xrandr --output HDMI-A-1 --left-of HDMI-A-0
-    layout: xrandr --output HDMI-A-1 --mode 3840x2160 --left-of HDMI-A-0 --output HDMI-A-0 --mode 3840x2160
+vars:
+  ssh_target: vm-work
 
-i3:
-    gaps: True
+display:
+  primary: HDMI-A-1
+  secondary: HDMI-A-0
+  layout: xrandr --output HDMI-A-1 --mode 1920x1080 --left-of HDMI-A-0 --output HDMI-A-0 --mode 1920x1080
 
 polybar:
-    networks:
-     - wlo1
-     - eno1
+  networks:
+  - wlo1
+  - br0
 
-common:
-    with_kube_tools: False
+i3:
+  options:
+  - gaps
+  - vm-work
+
+  optional:
+  - name: vm-work
+    type: mode
+    label: 'vm-work'
+    rebind: true
+    bindings:
+      "$mod+Return": 'exec i3-sensible-terminal -e ssh vm-work'
+
+  bindings:
+    "$mod+b": 'mode "vm-work"'
+    "$mod+Shift+b": 'mode "default"'

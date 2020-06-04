@@ -2,6 +2,7 @@
 
 WD=$(dirname $(readlink -f $0))
 JINJA=$WD/../../../venv/bin/jinja2
+PYTHON=$WD/../../../venv/bin/python
 I3_CONFIG_TMPL=$WD/../i3-config
 POLYBAR_CONFIG_TMPL=$WD/../polybar-config
 GLOBAL_SETTINGS=$WD/../settings.yaml
@@ -30,7 +31,7 @@ function main() {
     cd $TEMP
 
     # merge settings
-    python << EOF
+    $PYTHON << EOF
 from yaml import load, Loader, dump, Dumper
 
 def merge(a, b):
@@ -73,9 +74,11 @@ EOF
     [[ $? != 0 ]] && rm -rf $TEMP && nag "Failed to render i3-config. Check your template."
     mv $TEMP/i3-config ~/.config/i3/config
 
-    $JINJA $POLYBAR_CONFIG_TMPL $HW_SETTINGS > $TEMP/polybar-config
-    [[ $? != 0 ]] && rm -rf $TEMP && nag "Failed to render i3-config. Check your template."
+    $JINJA $POLYBAR_CONFIG_TMPL $TEMP/settings.yaml > $TEMP/polybar-config
+    [[ $? != 0 ]] && rm -rf $TEMP && nag "Failed to render polybar-config. Check your template."
     mv $TEMP/polybar-config ~/.config/polybar/config
+
+    rm -rf $TEMP
 
     # Might not be running in i3 when this
     # executes so capture failure and ignore it.

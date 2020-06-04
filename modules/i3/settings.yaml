@@ -32,14 +32,13 @@ vars:
   xgrey5: '#4E4E4E'
 
 display: {}
-common: {}
+
+polybar:
+  networks: []
+  options: []
 
 i3:
-
-  options:
-  - gaps
-  - kube_tools
-
+  options: []
   optional:
 
   - name: gaps
@@ -50,30 +49,33 @@ i3:
       - 'smart_gaps yes'
       - 'smart_borders on'
 
-  - name: kube_tools
+  - name: kube-tools
     type: bindings
     bindings:
       "$mod+Shift+x": 'exec --no-startup-id $HOME/.config/i3/scripts/kube-context-picker.sh'
 
   commands:
-    - 'floating_modifier $mod'
-    - 'client.focused $brightyellow $xgrey3 $yellow      $magenta  $yellow'
-    - 'client.focused_inactive $xgrey5 $xgrey3 $brightblack $xgrey3 $xgrey5'
-    - 'client.unfocused $xgrey1 $xgrey1 $brightblack $xgrey1 $xgrey1'
-    - 'client.urgent $red $xgrey1 $red $red $red'
-    - 'client.placeholder $xgrey1 $xgrey1 $brightblack $xgrey1 $xgrey1'
-    - 'client.background $black'
-    - 'exec dunst -config ~/.dunstrc'
-    - 'exec --no-startup-id "sh -c \"cat ~/.fehbg | sh\""'
-    - 'font pango:$font-0-name $font-0-size'
-    - 'assign [window_role="browser"] 6'
-    - 'assign [window_role="pop-up" class="Chromium"] 6'
-    - 'assign [class="Spotify"] 0'
-    - 'for_window [window_role="pop-up"] floating enabled'
-    - 'workspace_auto_back_and_forth yes'
+  - 'floating_modifier $mod'
+  - 'client.focused $brightyellow $xgrey3 $yellow      $magenta  $yellow'
+  - 'client.focused_inactive $xgrey5 $xgrey3 $brightblack $xgrey3 $xgrey5'
+  - 'client.unfocused $xgrey1 $xgrey1 $brightblack $xgrey1 $xgrey1'
+  - 'client.urgent $red $xgrey1 $red $red $red'
+  - 'client.placeholder $xgrey1 $xgrey1 $brightblack $xgrey1 $xgrey1'
+  - 'client.background $black'
+  - 'exec dunst -config ~/.dunstrc'
+  - 'exec --no-startup-id "sh -c \"cat ~/.fehbg | sh\""'
+  - 'font pango:$font-0-name $font-0-size'
+  - 'assign [window_role="browser"] 6'
+  - 'assign [window_role="pop-up" class="Chromium"] 6'
+  - 'assign [class="Spotify"] 0'
+  - 'for_window [window_role="pop-up"] floating enabled'
+  - 'workspace_auto_back_and_forth yes'
 
   modes:
-    resize:
+
+  - label: 'resize'
+    rebind: False
+    bindings:
       "k": 'resize grow height 5 px or 5 ppt'
       "j": 'resize shrink height 5 px or 5 ppt'
       "h": 'resize shrink width 5 px or 5 ppt'
@@ -85,8 +87,10 @@ i3:
       "Return": 'mode "default"'
       "Escape": 'mode "default"'
 
-    mark:
-      "1": mark "m1"
+  - label: 'mark'
+    rebind: False
+    bindings:
+      "1": 'mark "m1"'
       "2": 'mark "m2"'
       "3": 'mark "m3"'
       "4": 'mark "m4"'
@@ -99,7 +103,9 @@ i3:
       "Return": 'mode "default"'
       "Escape": 'mode "default"'
 
-    goto:
+  - label: 'goto'
+    rebind: false
+    bindings:
       "1": '[con_mark="m1"] focus'
       "2": '[con_mark="m2"] focus'
       "3": '[con_mark="m3"] focus'
