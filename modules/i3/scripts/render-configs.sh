@@ -4,10 +4,11 @@ WD=$(dirname $(readlink -f $0))
 JINJA=$WD/../../../venv/bin/jinja2
 I3_CONFIG_TMPL=$WD/../i3-config
 POLYBAR_CONFIG_TMPL=$WD/../polybar-config
-HW_PROFILE=$HOME/.config/hw/settings.yaml
+GLOBAL_SETTINGS=$WD/../settings.yaml
+HW_SETTINGS=$HOME/.config/hw/settings.yaml
 
 function is_interactive() {
-    [ -z "$PS1" ] && echo "Noop"
+    [ ! -z "$PS1" ] && echo "Noop"
 }
 
 function nag() {
@@ -21,11 +22,60 @@ function nag() {
 
 function main() {
 
-    [ ! -f $JINJA ] && nag "Something went wrong. You might need to install a hardware profile." && exit 1
-    [ ! -f $HW_PROFILE ] && nag "You have not setup a hardware profile yet. Run ./dotfiles init." && exit 2
+    [ ! -f $JINJA ] && nag "Something went wrong. You might need to install a hardware profile."
+    [ ! -f $HW_SETTINGS ] && nag "You have not setup a hardware settings yet. Run ./dotfiles install hw_[YOUR PROFILE]."
 
-    $JINJA $I3_CONFIG_TMPL $HW_PROFILE > ~/.config/i3/config
-    $JINJA $POLYBAR_CONFIG_TMPL $HW_PROFILE > ~/.config/polybar/config
+    TEMP=$(mktemp -d)
+
+    cd $TEMP
+
+    # merge settings
+    python << EOF
+from yaml import load, Loader, dump, Dumper
+
+def merge(a, b):
+  if b is None:
+    return a
+  if type(a) is dict:
+    for key, val in a.items():
+      a[key] = merge(val, b.get(key))
+    for key, val in b.items():
+      if key not in  a:
+        a[key] = merge(val, None)
+    return a
+  elif type(a) is list:
+    return a + b
+  else:
+    return b
+
+with open("$GLOBAL_SETTINGS") as fd1:
+  d1 = load(fd1, Loader=Loader)
+  print("d1", d1)
+  print("\n")
+
+with open("$HW_SETTINGS") as fd2:
+  d2 = load(fd2, Loader=Loader)
+  print("d2", d2)
+  print("\n")
+
+merge(d1, d2)
+print("d1", d1)
+print("\n")
+
+with open("./settings.yaml", "w") as fd3:
+    fd3.write(dump(d1, Dumper=Dumper))
+EOF
+    cd -
+
+    [ ! -f $TEMP/settings.yaml ] && nag "Failed to merge. Check your settings.yaml."
+
+    $JINJA $I3_CONFIG_TMPL $TEMP/settings.yaml > $TEMP/i3-config
+    [[ $? != 0 ]] && rm -rf $TEMP && nag "Failed to render i3-config. Check your template."
+    mv $TEMP/i3-config ~/.config/i3/config
+
+    $JINJA $POLYBAR_CONFIG_TMPL $HW_SETTINGS > $TEMP/polybar-config
+    [[ $? != 0 ]] && rm -rf $TEMP && nag "Failed to render i3-config. Check your template."
+    mv $TEMP/polybar-config ~/.config/polybar/config
 
     # Might not be running in i3 when this
     # executes so capture failure and ignore it.
@@ -34,3 +84,4 @@ function main() {
 }
 
 main "$@"
+

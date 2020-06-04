@@ -1,10 +1,10 @@
+vars:
+  ssh_target: vm-work
+
 display:
     primary: HDMI-2
     secondary: DP-1
     layout: xrandr --output DP-1 --left-of HDMI-2
-
-i3:
-    gaps: True
 
 polybar:
     networks:
@@ -12,4 +12,10 @@ polybar:
      - enp2s0
 
 common:
-    with_kube_tools: True
+  with_kube_tools: True
+
+i3:
+  options:
+    - kube_tools
+    - gaps
+    - ssh-targets
