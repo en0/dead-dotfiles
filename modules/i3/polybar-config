@@ -267,7 +267,7 @@ label = %output:0:15:...%
 [module/ws-active-git]
 type = custom/script
 interval = 30
-exec = git --git-dir=$(cat ~/.cache/ws-workspaces/active)/.git branch
+exec = git --git-dir=$(cat ~/.cache/ws-workspaces/active)/.git rev-parse --abbrev-ref HEAD
 exec-if = [ -f $HOME/.cache/ws-workspaces/active ] && [ -d $(cat $HOME/.cache/ws-workspaces/active)/.git ]
 content = loading...
 
