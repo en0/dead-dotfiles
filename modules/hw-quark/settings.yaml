@@ -4,7 +4,7 @@ vars:
 display:
   primary: HDMI-A-1
   secondary: HDMI-A-0
-  layout: xrandr --output HDMI-A-1 --mode 1920x1080 --left-of HDMI-A-0 --output HDMI-A-0 --mode 1920x1080
+  layout: xrandr --output HDMI-A-0 --mode 1920x1080 --left-of HDMI-A-1 --output HDMI-A-1 --mode 1920x1080
 
 polybar:
   networks:
