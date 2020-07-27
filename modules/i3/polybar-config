@@ -223,7 +223,7 @@ bar-volume-gradient = false
 bar-volume-indicator = 
 bar-volume-fill = 
 bar-volume-empty = 
-bar-volume-empty-foreground = ${vars.xgrey6}
+bar-volume-empty-foreground = ${vars.xgrey5}
 
 [module/temperature]
 type = internal/temperature
