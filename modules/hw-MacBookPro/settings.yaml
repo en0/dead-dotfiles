@@ -1,12 +1,13 @@
 display:
-    primary: eDP-1
-
-i3:
-    gaps: False
+  primary: eDP-1
+  layout: xrandr --output eDP-1 --mode 1920x1200
 
 polybar:
-    networks:
-     - wlp3s0
+  networks:
+  - wlp3s0
 
-common:
-    with_kube_tools: False
+i3:
+  options: []
+
+startup:
+  - "setxkbmap -layout us -option caps:escape"

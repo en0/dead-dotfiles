@@ -33,6 +33,8 @@ vars:
 
 display: {}
 
+startup: []
+
 polybar:
   networks: []
   options: []
