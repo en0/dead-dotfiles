@@ -69,3 +69,7 @@ exec_always --no-startup-id $HOME/.config/i3/scripts/launch-polybar.sh primary s
 {% else -%}
 exec_always --no-startup-id $HOME/.config/i3/scripts/launch-polybar.sh primary
 {% endif -%}
+
+{% for prog in startup -%}
+exec --no-startup-id {{prog}}
+{% endfor -%}
