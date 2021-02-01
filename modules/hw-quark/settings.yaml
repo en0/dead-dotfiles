@@ -1,29 +1,12 @@
-vars:
-  ssh_target: vm-work
-
 display:
-  primary: HDMI-A-1
-  secondary: HDMI-A-0
-  layout: xrandr --output HDMI-A-0 --mode 1920x1080 --left-of HDMI-A-1 --output HDMI-A-1 --mode 1920x1080
+  primary: HDMI-A-0
+  secondary: HDMI-A-1
+  layout: xrandr --output HDMI-A-1 --left-of HDMI-A-0
 
 polybar:
   networks:
   - wlo1
-  - br0
 
 i3:
   options:
   - gaps
-  - vm-work
-
-  optional:
-  - name: vm-work
-    type: mode
-    label: 'vm-work'
-    rebind: true
-    bindings:
-      "$mod+Return": 'exec i3-sensible-terminal -e ssh vm-work'
-
-  bindings:
-    "$mod+b": 'mode "vm-work"'
-    "$mod+Shift+b": 'mode "default"'
