@@ -58,12 +58,11 @@ _install() {
     has_platform ubuntu18 && ubuntu_install
     has_platform ubuntu20 && ubuntu_install
     has_platform arch && arch_install
-    mkdir -p ~/.config/nvim/init.d
-    ln -s $CMD/init.vim ~/.config/nvim/init.vim
-    for f in $(find $CMD/init.d -type f)
-    do
-        ln -s $f ~/.config/nvim/init.d/$(basename $f)
-    done
+    ln -s $CMD/init.vim          ~/.config/nvim/init.vim
+    ln -s $CMD/coc-settings.json ~/.config/nvim/coc-settings.json
+    ln -s $CMD/init.d            ~/.config/nvim/init.d
+    ln -s $CMD/lua.d             ~/.config/nvim/lua.d
+    ln -s $CMD/snips             ~/.config/nvim/snips
     nvim --headless +PlugInstall +qall
 }
 

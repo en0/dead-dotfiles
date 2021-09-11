@@ -1,17 +1,16 @@
-" Do i still need this in neovim 0.5+?
 let g:python_host_prog='/usr/local/share/nvim/python2/bin/python'
 let g:python3_host_prog='/usr/local/share/nvim/python3/bin/python'
 
 "syntax on
 set nu
-"set relativenumber
+set relativenumber
 set ruler
 set cursorline
 set scrolloff=10
 
 "auto indent
-"set ai
-"filetype indent plugin on
+set ai
+filetype indent plugin on
 
 " use system clipboard
 set clipboard+=unnamedplus
@@ -49,3 +48,6 @@ set mouse=a mousemodel=popup
 
 " buffer switching (unsaved)
 set hidden
+
+" Code Folding
+set foldlevelstart=20
