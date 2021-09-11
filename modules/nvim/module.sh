@@ -55,9 +55,9 @@ arch_remove() {
 }
 
 _install() {
-    #has_platform ubuntu18 && ubuntu_install
-    #has_platform ubuntu20 && ubuntu_install
-    #has_platform arch && arch_install
+    has_platform ubuntu18 && ubuntu_install
+    has_platform ubuntu20 && ubuntu_install
+    has_platform arch && arch_install
     mkdir -p ~/.config/nvim/
     ln -s $CMD/init.vim          ~/.config/nvim/init.vim
     ln -s $CMD/coc-settings.json ~/.config/nvim/coc-settings.json
@@ -66,12 +66,12 @@ _install() {
     ln -s $CMD/snips             ~/.config/nvim/snips
     nvim --headless +PlugInstall +qall
 
-    echo [I] You still need to configure Node.js.
+    echo "[I] You still need to configure Node.js."
     echo ""
-    echo [I] Install neovim module - npm install -g neovim
-    echo [I] Install tree-sitter module - npm install -g tree-sitter-cli
+    echo "[I] Install neovim module - npm install -g neovim"
+    echo "[I] Install tree-sitter module - npm install -g tree-sitter-cli"
     echo ""
-    echo [W] It's recomended that you install nvm from dotfiles first
+    echo "[W] It's recomended that you install nvm from dotfiles first"
 }
 
 _remove() {
