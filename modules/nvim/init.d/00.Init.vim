@@ -1,5 +1,3 @@
-" let g:python_host_prog=expand('~/.local/share/python2/bin/python')
-" let g:python3_host_prog=expand('~/.local/share/python3/bin/python')
 let g:python_host_prog='/usr/local/share/nvim/python2/bin/python'
 let g:python3_host_prog='/usr/local/share/nvim/python3/bin/python'
 

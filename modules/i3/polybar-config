@@ -38,8 +38,8 @@ font-0 = ${common.font-0}
 font-1 = ${common.font-1}
 font-2 = ${common.font-2}
 
-modules-left = i3 sep {% if 'kube-tools' in polybar.options -%} kube-context kube-namespace sep {% endif -%} ws-active ws-active-git 
-modules-center = 
+modules-left = i3 sep {% if 'kube-tools' in polybar.options -%} kube-context kube-namespace {% endif -%}
+modules-center =
 modules-right = pulseaudio filesystem memory cpu temperature date
 
 tray-position = right
@@ -76,8 +76,8 @@ font-1 = ${common.font-1}
 font-2 = ${common.font-2}
 
 modules-left = i3
-modules-center = 
-modules-right = {% for iface in polybar.networks -%} {{iface}} {% endfor -%} date
+modules-center =
+modules-right = aqi {% for iface in polybar.networks -%} {{iface}} {% endfor -%} date
 
 ;wm-restack = i3
 ;override-redirect = false
@@ -252,29 +252,15 @@ compositing-background = xor
 margin-top = 0
 margin-bottom = 0
 
-[module/ws-active]
+[module/aqi]
 type = custom/script
-interval = 30
-exec = basename $(cat ~/.cache/ws-workspaces/active)
-exec-if = [ -f $HOME/.cache/ws-workspaces/active ]
+interval = 300
+exec = $HOME/.config/i3/scripts/aqi.sh
 content = loading...
 
-format = <label>
+format = AQI:<label>
 format-padding = 0
-format-foreground = ${vars.yellow}
 label = %output:0:15:...%
-
-[module/ws-active-git]
-type = custom/script
-interval = 30
-exec = git --git-dir=$(cat ~/.cache/ws-workspaces/active)/.git rev-parse --abbrev-ref HEAD
-exec-if = [ -f $HOME/.cache/ws-workspaces/active ] && [ -d $(cat $HOME/.cache/ws-workspaces/active)/.git ]
-content = loading...
-
-format = <label>
-format-foreground = ${vars.green}
-format-padding = 0
-label = (%output:0:40:...%)
 
 [module/sep]
 type = custom/text

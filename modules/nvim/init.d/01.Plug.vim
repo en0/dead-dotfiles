@@ -6,4 +6,5 @@ call plug#begin()
   Plug 'junegunn/fzf'
   Plug 'davidhalter/jedi-vim'
   Plug 'ervandew/supertab'
+  Plug 'kevinhwang91/rnvimr', {'do': 'make sync'}
 call plug#end()

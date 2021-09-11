@@ -1,6 +1,3 @@
-vars:
-  ssh_target: vm-work
-
 display:
   primary: HDMI-A-1
   secondary: HDMI-A-0
@@ -16,14 +13,14 @@ i3:
   - gaps
   - vm-work
 
-  optional:
-  - name: vm-work
-    type: mode
-    label: 'vm-work'
-    rebind: true
-    bindings:
-      "$mod+Return": 'exec i3-sensible-terminal -e ssh vm-work'
+    #optional:
+    #- name: vm-work
+    #  type: mode
+    #  label: 'vm-work'
+    #  rebind: true
+    #  bindings:
+    #    "$mod+Return": 'exec i3-sensible-terminal -e ssh vm-work'
 
-  bindings:
-    "$mod+b": 'mode "vm-work"'
-    "$mod+Shift+b": 'mode "default"'
+    #bindings:
+    #  "$mod+b": 'mode "vm-work"'
+    #  "$mod+Shift+b": 'mode "default"'
