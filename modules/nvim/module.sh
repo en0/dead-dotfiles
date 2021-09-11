@@ -10,7 +10,7 @@ ubuntu_install() {
     sudo install -o root -g root -m 755 ./nvim.appimage $NVIM_SHARE_TARGET/share/nvim/nvim
     sudo ln -s $NVIM_SHARE_TARGET/share/nvim/nvim $NVIM_SHARE_TARGET/bin/nvim
 
-    sudo apt-get install -y python-virtualenv python3-virtualenv
+    sudo apt-get install -y python2-virtualenv python3-virtualenv bdist_wheel
 
     # install python2 virtual env
     sudo python2 -m virtualenv $NVIM_SHARE_TARGET/share/nvim/python2
@@ -56,6 +56,7 @@ arch_remove() {
 
 _install() {
     has_platform ubuntu18 && ubuntu_install
+    has_platform ubuntu20 && ubuntu_install
     has_platform arch && arch_install
     mkdir -p ~/.config/nvim/init.d
     ln -s $CMD/init.vim ~/.config/nvim/init.vim
@@ -68,6 +69,7 @@ _install() {
 
 _remove() {
     has_platform ubuntu18 && ubuntu_remove
+    has_platform ubuntu20 && ubuntu_remove
     has_platform arch && arch_remove
     rm -rf ~/.config/nvim
 }
@@ -79,4 +81,4 @@ _info() {
         echo " - [Installed]" || echo ""
 }
 
-run_if ubuntu18 arch osx
+run_if ubuntu18 ubuntu20 arch osx

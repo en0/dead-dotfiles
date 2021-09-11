@@ -14,7 +14,7 @@ _remove() {
 }
 
 _info() {
-    echo -n "Workspace - Terminal as an IDE" && \
+    echo -n "Workspace-lite - Terminal as an IDE but less complex" && \
         is_installed "$ENV.d/workspace.env" && \
         echo " - [Installed]" || echo ""
 }
