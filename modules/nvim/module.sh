@@ -10,15 +10,22 @@ ubuntu_install() {
     sudo install -o root -g root -m 755 ./nvim.appimage $NVIM_SHARE_TARGET/share/nvim/nvim
     sudo ln -s $NVIM_SHARE_TARGET/share/nvim/nvim $NVIM_SHARE_TARGET/bin/nvim
 
-    sudo apt-get install -y python2-virtualenv python3-virtualenv bdist_wheel
+    sudo apt-get install -y python-virtualenv python3-venv
 
     # install python2 virtual env
     sudo python2 -m virtualenv $NVIM_SHARE_TARGET/share/nvim/python2
-    sudo $NVIM_SHARE_TARGET/share/nvim/python2/bin/pip install pynvim
+    sudo $NVIM_SHARE_TARGET/share/nvim/python2/bin/pip install neovim
 
     # install python3 virtual env
     sudo python3 -m venv $NVIM_SHARE_TARGET/share/nvim/python3
-    sudo $NVIM_SHARE_TARGET/share/nvim/python3/bin/pip install pynvim
+    sudo $NVIM_SHARE_TARGET/share/nvim/python3/bin/pip install neovim
+
+    # TODO: install nvm
+    # TODO: npm install -g neovim
+    # TODO: curl -L -O https://github.com/BurntSushi/ripgrep/releases/download/13.0.0/ripgrep_13.0.0_amd64.deb
+    # TODO: file ripgrep_13.0.0_amd64.deb
+    # TODO: sudo dpkg -i ripgrep_13.0.0_amd64.deb
+    # TODO: npm -g install tree-sitter-cli
 
     # install vim-plug
     sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
