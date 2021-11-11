@@ -42,4 +42,7 @@ call plug#begin()
 
     Plug 'srcery-colors/srcery-vim'
 
+    " https://github.com/vim-test/vim-test
+    Plug 'vim-test/vim-test'
+
 call plug#end()

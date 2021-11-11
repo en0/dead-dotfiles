@@ -3,6 +3,7 @@ let mapleader = ","
 "" Which key
 nnoremap <silent> <leader> :WhichKey '<Leader>'<CR>
 nnoremap <silent> g :WhichKey 'g'<CR>
+nnoremap <silent> t :WhichKey 't'<CR>
 
 "" Buffer navigation
 "map <Leader>n :bp<CR>
@@ -34,6 +35,7 @@ nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 nmap <silent> gm <Plug>(git-messenger)
 nmap <silent> gg :0<CR>
+nmap <silent> gt :TestVisit
 
 " Use K to show documentation in preview window.
 nnoremap <silent> K :call <SID>show_documentation()<CR>
@@ -91,3 +93,9 @@ function! InsertUnittestSkip()
   let line = expand("@unittest.skip('WIP')")
   execute "normal O".line
 endfunction
+
+" Unit Test
+nmap <silent> tf :TestNearest<CR>
+nmap <silent> tt :TestLast<CR>
+nmap <silent> tb :TestFile<CR>
+nmap <silent> tg :TestVisit<CR>
