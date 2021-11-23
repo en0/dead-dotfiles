@@ -5,14 +5,15 @@ ENV=$DOTFILES_ENV
 NVIM_SHARE_TARGET=/usr/local
 
 _install_nodejs() {
-    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
-    create_env
-    ln -s "$CMD/nvm.env" "$ENV.d/nvm.env"
-    source "$ENV.d/nvm.env"
-    nvm install --lts
-    node -v > $HOME/.nvmrc
+    $CMD/../../dotfiles.sh install nvm
     source $ENV.d/nvm.env
     npm install -g neovim tree-sitter-cli
+}
+
+_install_repgrep() {
+    curl -L -O https://github.com/BurntSushi/ripgrep/releases/download/13.0.0/ripgrep_13.0.0_amd64.deb
+    sudo dpkg -i ripgrep_13.0.0_amd64.deb
+    rm -f ripgrep_13.0.0_amd64.deb
 }
 
 ubuntu_install() {
@@ -33,12 +34,7 @@ ubuntu_install() {
     sudo $NVIM_SHARE_TARGET/share/nvim/python3/bin/pip install neovim
 
     _install_nodejs
-    # TODO: install nvm
-    # TODO: npm install -g neovim
-    # TODO: curl -L -O https://github.com/BurntSushi/ripgrep/releases/download/13.0.0/ripgrep_13.0.0_amd64.deb
-    # TODO: file ripgrep_13.0.0_amd64.deb
-    # TODO: sudo dpkg -i ripgrep_13.0.0_amd64.deb
-    # TODO: npm -g install tree-sitter-cli
+    _install_repgrep
 
     # install vim-plug
     sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \

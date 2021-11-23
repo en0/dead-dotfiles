@@ -9,8 +9,15 @@ arch_install() {
     sudo pacman -Syu alacritty
 }
 
+ubuntu_install() {
+    sudo add-apt-repository --yes ppa:aslatter/ppa
+    sudo apt-get update --yes
+    sudo apt-get install --yes alacritty
+}
+
 _install() {
     has_platform arch && arch_install
+    has_platform ubuntu18 && ubuntu_install
     mkdir -p $(dirname $TARGET)
     ln -s $MD/alacritty.yml $TARGET
 }
