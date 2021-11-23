@@ -1,7 +1,19 @@
 source $DOTFILES_TOOL_PATH/common.sh
 
 CMD=$DOTFILES_CURRENT_MOD_DIR
+ENV=$DOTFILES_ENV
 NVIM_SHARE_TARGET=/usr/local
+
+_install_nodejs() {
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
+    create_env
+    ln -s "$CMD/nvm.env" "$ENV.d/nvm.env"
+    source "$ENV.d/nvm.env"
+    nvm install --lts
+    node -v > $HOME/.nvmrc
+    source $ENV.d/nvm.env
+    npm install -g neovim tree-sitter-cli
+}
 
 ubuntu_install() {
     # Install vim
@@ -20,6 +32,7 @@ ubuntu_install() {
     sudo python3 -m venv $NVIM_SHARE_TARGET/share/nvim/python3
     sudo $NVIM_SHARE_TARGET/share/nvim/python3/bin/pip install neovim
 
+    _install_nodejs
     # TODO: install nvm
     # TODO: npm install -g neovim
     # TODO: curl -L -O https://github.com/BurntSushi/ripgrep/releases/download/13.0.0/ripgrep_13.0.0_amd64.deb

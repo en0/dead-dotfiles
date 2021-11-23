@@ -4,7 +4,7 @@ call plug#begin()
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
     " https://github.com/pappasam/coc-jedi
-    Plug 'pappasam/coc-jedi', {'do': 'yarn install --frozen-lockfile && yarn build'}
+    Plug 'pappasam/coc-jedi', {'branch': 'main', 'do': 'yarn install --frozen-lockfile && yarn build'}
 
     " https://github.com/kevinoid/vim-jsonc
     Plug 'kevinoid/vim-jsonc'
