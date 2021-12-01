@@ -80,19 +80,21 @@ tnoremap <C-w>l <C-\><C-N><C-w>l
 
 
 " Python
-map <Leader>p :call InsertBreakpoint()<CR>
+autocmd FileType python map <Leader>p :call InsertBreakpoint()<CR>
 
 function! InsertBreakpoint()
   let trace = expand("import pdb; pdb.set_trace()")
   execute "normal o".trace
 endfunction
 
-map <Leader>S :call InsertUnittestSkip()<CR>
+autocmd FileType python map <Leader>S :call InsertUnittestSkip()<CR>
 
 function! InsertUnittestSkip()
   let line = expand("@unittest.skip('WIP')")
   execute "normal O".line
 endfunction
+
+autocmd FileType python nnoremap <buffer><Leader>i :exec '!isort %'<CR>
 
 " Unit Test
 nmap <silent> tf :TestNearest<CR>

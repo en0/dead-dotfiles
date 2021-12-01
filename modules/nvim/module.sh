@@ -32,6 +32,7 @@ ubuntu_install() {
     # install python3 virtual env
     sudo python3 -m venv $NVIM_SHARE_TARGET/share/nvim/python3
     sudo $NVIM_SHARE_TARGET/share/nvim/python3/bin/pip install neovim
+    sudo $NVIM_SHARE_TARGET/share/nvim/python3/bin/pip install isort
 
     _install_nodejs
     _install_repgrep

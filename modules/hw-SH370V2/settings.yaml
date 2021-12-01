@@ -16,15 +16,17 @@ i3:
   - kube-tools
   - gaps
 
-  modes:
-  - name: devbox
-    type: mode
-    label: 'devbox'
-    rebind: true
-    bindings:
-      "$mod+Return": 'exec ssh devbox alacritty'
-      "$mod+p": 'exec ssh devbox rofi -theme glue_pro_blue -show drun'
+  # modes:
+  # - name: devbox
+  #   type: mode
+  #   label: 'devbox'
+  #   rebind: true
+  #   bindings:
+  #     "$mod+Return": 'exec ssh devbox alacritty'
+  #     "$mod+p": 'exec ssh devbox rofi -theme glue_pro_blue -show drun'
 
   bindings:
-    "$mod+b": 'mode "devbox"'
-    "$mod+Shift+b": 'mode "default"'
+    #"$mod+b": 'mode "devbox"'
+    #"$mod+Shift+b": 'mode "default"'
+    "$mod+Shift+Return": 'exec ssh devbox alacritty'
+    "$mod+Shift+p": 'exec ssh devbox rofi -theme glue_pro_blue -show drun'
