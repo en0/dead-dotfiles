@@ -17,4 +17,4 @@ _info() {
     echo -n "Powerline Fonts - patched fonts with extra glyphs"
 }
 
-run_if ubuntu18 ubuntu20 arch osx
+run_if ubuntu18 ubuntu20 ubuntu21 arch osx

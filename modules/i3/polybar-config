@@ -9,13 +9,13 @@
 [common]
 font-0 = {{vars["font-0-name"]}}:size={{vars["font-0-size"]}};1
 font-1 = {{vars["font-1-name"]}}:size={{vars["font-1-size"]}};1
-font-2 = {{vars["font-2-name"]}}:size={{vars["font-2-size"]}};1
+
 line-size = 1
 
 [bar/primary]
 monitor = ${env:MONITOR:{{display.primary}}}
 width = 100%
-height = 20
+height = {{polybar.height}}
 radius = 0
 fixed-center = false
 
@@ -36,11 +36,14 @@ module-margin-right = 2
 
 font-0 = ${common.font-0}
 font-1 = ${common.font-1}
-font-2 = ${common.font-2}
 
 modules-left = i3 sep {% if 'kube-tools' in polybar.options -%} kube-context kube-namespace {% endif -%}
 modules-center =
+{% if display.secondary is defined -%}
 modules-right = pulseaudio filesystem memory cpu temperature date
+{% else -%}
+modules-right = pulseaudio filesystem memory cpu temperature {% for iface in polybar.networks -%} {{iface}} {% endfor -%} date
+{% endif -%}
 
 tray-position = right
 tray-padding = 2
@@ -52,7 +55,7 @@ tray-padding = 2
 [bar/secondary]
 monitor = ${env:MONITOR:{{display.secondary}}}
 width = 100%
-height = 20
+height = {{polybar.height}}
 radius = 0
 fixed-center = false
 
@@ -73,7 +76,6 @@ module-margin-right = 2
 
 font-0 = ${common.font-0}
 font-1 = ${common.font-1}
-font-2 = ${common.font-2}
 
 modules-left = i3
 modules-center =
@@ -92,7 +94,7 @@ type = internal/fs
 interval = 25
 
 mount-0 = /
-label-mounted = : %free%
+label-mounted =  %free%
 label-unmounted = %mountpoint% not mounted
 
 [module/i3]
@@ -102,20 +104,20 @@ index-sort = true
 wrapping-scroll = false
 pin-workspaces = true
 
-ws-icon-0 = 1;
-ws-icon-1 = 2;
-ws-icon-2 = 3;
-ws-icon-3 = 4;
-ws-icon-4 = 5;
-ws-icon-5 = 6;
-ws-icon-6 = 7;
-ws-icon-7 = 8;
-ws-icon-8 = 9;
-ws-icon-9 = 0;
-;ws-icon-default = 
+ws-icon-0 = 1;1
+ws-icon-1 = 2;2
+ws-icon-2 = 3;3
+ws-icon-3 = 4;4
+ws-icon-4 = 5;5
+ws-icon-5 = 6;6
+ws-icon-6 = 7;7
+ws-icon-7 = 8;8
+ws-icon-8 = 9;9
+ws-icon-9 = 0;0
+ws-icon-default = 
 
-format = <label-state> <label-mode>
-format-padding = 1
+format = "<label-state> <label-mode>"
+format-padding = 0
 
 label-mode-padding = 0
 label-mode-foreground = ${vars.magenta}
@@ -153,8 +155,8 @@ label-separator-background = ${vars.black}
 [module/cpu]
 type = internal/cpu
 interval = 0.5
-format-prefix = ""
-format = <label> <ramp-coreload>
+format-prefix = ""
+format = "<label> <ramp-coreload>"
 label = %percentage:3%%
 
 ; Spacing between individual per-core ramps
@@ -172,14 +174,14 @@ ramp-coreload-foreground = ${vars.red}
 [module/memory]
 type = internal/memory
 interval = 2
-format-prefix = ""
+format-prefix = ""
 format = <label> <bar-used>
 label = %percentage_used:3%%
 bar-used-width = 20
 
-bar-used-indicator = 
-bar-used-fill = 
-bar-used-empty = 
+bar-used-indicator = "|"
+bar-used-fill = "="
+bar-used-empty = "-"
 
 bar-used-foreground-0 = ${vars.green}
 bar-used-foreground-1 = ${vars.yellow}
@@ -197,7 +199,7 @@ date-alt = " %a, %b %d"
 time = %I:%M %p
 time-alt = %I:%M %p
 
-format-prefix = 
+format-prefix = ""
 ;format-underline = ${vars.blue}
 
 label = %date% %time%
@@ -206,12 +208,12 @@ label = %date% %time%
 type = internal/pulseaudio
 
 format-volume = <label-volume> <bar-volume>
-label-volume =  %percentage%%
+label-volume = 蓼 %percentage%%
 
 format-muted = <label-muted> <bar-volume>
-label-muted =  MUTE
+label-muted = 遼 %percentage%%
 
-bar-volume-width = 10
+bar-volume-width = 20
 bar-volume-foreground-0 = #55aa55
 bar-volume-foreground-1 = #55aa55
 bar-volume-foreground-2 = #55aa55
@@ -220,9 +222,9 @@ bar-volume-foreground-4 = #55aa55
 bar-volume-foreground-5 = #f5a70a
 bar-volume-foreground-6 = #ff5555
 bar-volume-gradient = false
-bar-volume-indicator = 
-bar-volume-fill = 
-bar-volume-empty = 
+bar-volume-indicator = "|"
+bar-volume-fill = "="
+bar-volume-empty = "-"
 bar-volume-empty-foreground = ${vars.xgrey5}
 
 [module/temperature]
@@ -230,7 +232,7 @@ type = internal/temperature
 thermal-zone = 1,2,3
 warn-temperature = 60
 
-format-prefix = " "
+format-prefix = " "
 format = <label>
 format-underline = ${vars.green}
 format-warn = <label-warn>
@@ -298,14 +300,18 @@ interval = 3.0
 
 format-connected-underline = ${vars.green}
 {% if iface.startswith('w') -%}
-format-connected-prefix = " "
+format-connected-prefix = "直 "
 label-connected = %local_ip% (%essid%)
 {% else -%}
-format-connected-prefix = " "
+format-connected-prefix = " "
 label-connected = %local_ip%
 {% endif -%}
 
-format-disconnected-prefix = " "
+{% if iface.startswith('w') -%}
+format-disconnected-prefix = "睊 "
+{% else -%}
+format-disconnected-prefix = " "
+{% endif -%}
 format-disconnected-underline = ${vars.red}
 label-disconnected = NO LINK
 {% endfor -%}

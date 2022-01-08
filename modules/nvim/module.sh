@@ -74,6 +74,7 @@ arch_remove() {
 _install() {
     has_platform ubuntu18 && ubuntu_install
     has_platform ubuntu20 && ubuntu_install
+    has_platform ubuntu21 && ubuntu_install
     has_platform arch && arch_install
     mkdir -p ~/.config/nvim/
     ln -s $CMD/init.vim          ~/.config/nvim/init.vim
@@ -105,4 +106,4 @@ _info() {
         echo " - [Installed]" || echo ""
 }
 
-run_if ubuntu18 ubuntu20 arch osx
+run_if ubuntu18 ubuntu20 ubuntu21 arch osx

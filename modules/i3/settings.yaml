@@ -3,10 +3,8 @@ vars:
   xfont: '-*-dejavu sans mono-medium-r-normal--13-80-*-*-*-*-iso10646-1'
   font-0-name: 'DejaVu Sans Mono'
   font-0-size: '10'
-  font-1-name: 'Ionicons'
-  font-1-size: '10'
-  font-2-name: 'FontAwesome5Free'
-  font-2-size: '10'
+  font-1-name: 'DejaVuSansMono Nerd Font Mono'
+  font-1-size: '14'
   black: '#1C1B19'
   brightblack: '#918175'
   red: '#EF2F27'
@@ -36,6 +34,7 @@ display: {}
 startup: []
 
 polybar:
+  height: 20
   networks: []
   options: []
 

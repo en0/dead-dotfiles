@@ -18,6 +18,8 @@ ubuntu_install() {
 _install() {
     has_platform arch && arch_install
     has_platform ubuntu18 && ubuntu_install
+    has_platform ubuntu20 && ubuntu_install
+    has_platform ubuntu21 && ubuntu_install
     mkdir -p $(dirname $TARGET)
     ln -s $MD/alacritty.yml $TARGET
 }
@@ -32,6 +34,6 @@ _info() {
         echo " - [Installed]" || echo ""
 }
 
-run_if ubuntu18 arch osx
+run_if ubuntu18 ubuntu20 ubuntu21 arch osx
 
 
