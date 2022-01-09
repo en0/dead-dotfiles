@@ -10,6 +10,8 @@ polybar:
   height: 25
   networks:
   - wlp9s0
+  options:
+  - battery
 
 i3:
   options:
