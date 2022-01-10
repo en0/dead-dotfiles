@@ -40,9 +40,9 @@ font-1 = ${common.font-1}
 modules-left = i3 sep
 modules-center =
 {% if display.secondary is defined -%}
-modules-right = pulseaudio filesystem memory cpu temperature date
+modules-right = {% if 'microphone' in polybar.options -%} microphone {% endif -%} pulseaudio filesystem memory cpu temperature date
 {% else -%}
-modules-right = pulseaudio filesystem memory cpu temperature {% for iface in polybar.networks -%} {{iface}} {% endfor -%} {% if 'battery' in polybar.options -%} battery {% endif -%} date
+modules-right = {% if 'microphone' in polybar.options -%} microphone {% endif -%} pulseaudio filesystem memory cpu temperature {% for iface in polybar.networks -%} {{iface}} {% endfor -%} {% if 'battery' in polybar.options -%} battery {% endif -%} date
 {% endif -%}
 
 tray-position = right
@@ -193,8 +193,8 @@ bar-used-foreground-3 = ${vars.red}
 type = internal/date
 interval = 5
 
-date =
-date-alt = " %a, %b %d"
+date = " %a, %b %d"
+date-alt =
 
 time = %I:%M %p
 time-alt = %I:%M %p
@@ -211,7 +211,7 @@ format-volume = <label-volume> <bar-volume>
 label-volume = 蓼 %percentage%%
 
 format-muted = <label-muted> <bar-volume>
-label-muted = 遼 %percentage%%
+label-muted = 遼 MUTED
 
 bar-volume-width = 20
 bar-volume-foreground-0 = #55aa55
@@ -229,7 +229,7 @@ bar-volume-empty-foreground = ${vars.xgrey5}
 
 [module/temperature]
 type = internal/temperature
-thermal-zone = 1,2,3
+thermal-zone = *
 warn-temperature = 60
 
 format-prefix = " "
@@ -373,3 +373,15 @@ animation-discharging-3 = 
 animation-discharging-4 = 
 ; Framerate in milliseconds
 animation-discharging-framerate = 500
+
+[module/microphone]
+type = custom/script
+interval = 1
+exec = $HOME/.config/i3/scripts/mic.sh
+content = 
+
+format = <label>
+format-padding = -1
+
+click-left = $HOME/.config/i3/scripts/mic.sh toggle
+

@@ -12,10 +12,21 @@ polybar:
   - wlp9s0
   options:
   - battery
+  - microphone
 
 i3:
   options:
   - gaps
+
+  bindings:
+    "XF86AudioRaiseVolume": "exec --no-startup-id pactl get-default-sink | xargs -I{} pactl set-sink-volume {} +5%"
+    "XF86AudioLowerVolume": "exec --no-startup-id pactl get-default-sink | xargs -I{} pactl set-sink-volume {} -5%"
+    "XF86AudioMute": "exec --no-startup-id pactl get-default-sink | xargs -I{} pactl set-sink-mute {} toggle"
+    "XF86AudioMicMute": "exec --no-startup-id pactl get-default-source | xargs -I{} pactl set-source-mute {} toggle"
+    "XF86MonBrightnessUp": "exec --no-startup-id xbacklight -inc 20"
+    "XF86MonBrightnessDown": "exec --no-startup-id xbacklight -dec 20"
+    "Print": "exec --no-startup-id $HOME/.config/i3/scripts/screenshot.sh"
+    "XF86Favorites": "exec $HOME/.favorite.sh"
 
 startup:
   - setxkbmap -option caps:swapescape
