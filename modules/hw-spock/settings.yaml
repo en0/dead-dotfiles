@@ -19,13 +19,15 @@ i3:
   - gaps
 
   bindings:
+    "Print": "exec --no-startup-id $HOME/.config/i3/scripts/screenshot.sh"
     "XF86AudioRaiseVolume": "exec --no-startup-id pactl get-default-sink | xargs -I{} pactl set-sink-volume {} +5%"
     "XF86AudioLowerVolume": "exec --no-startup-id pactl get-default-sink | xargs -I{} pactl set-sink-volume {} -5%"
+    "$mod+XF86MonBrightnessUp": "exec --no-startup-id light -s sysfs/leds/tpacpi::kbd_backlight -r -A 1"
+    "$mod+XF86MonBrightnessDown": "exec --no-startup-id light -s sysfs/leds/tpacpi::kbd_backlight -r -U 1"
     "XF86AudioMute": "exec --no-startup-id pactl get-default-sink | xargs -I{} pactl set-sink-mute {} toggle"
     "XF86AudioMicMute": "exec --no-startup-id pactl get-default-source | xargs -I{} pactl set-source-mute {} toggle"
-    "XF86MonBrightnessUp": "exec --no-startup-id xbacklight -inc 20"
-    "XF86MonBrightnessDown": "exec --no-startup-id xbacklight -dec 20"
-    "Print": "exec --no-startup-id $HOME/.config/i3/scripts/screenshot.sh"
+    "XF86MonBrightnessUp": "exec --no-startup-id light -s sysfs/backlight/auto -r -A 5"
+    "XF86MonBrightnessDown": "exec --no-startup-id light -s sysfs/backlight/auto -r -U 5"
     "XF86Favorites": "exec $HOME/.favorite.sh"
 
 startup:
