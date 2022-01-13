@@ -1,3 +1,7 @@
+vars:
+  font-0-size: '10'
+  font-1-size: '12'
+
 display:
   primary: HDMI-2
   secondary: DP-1

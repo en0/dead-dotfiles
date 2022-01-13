@@ -181,7 +181,7 @@ bar-used-width = 20
 
 bar-used-indicator = "|"
 bar-used-fill = "="
-bar-used-empty = "-"
+bar-used-empty = "="
 
 bar-used-foreground-0 = ${vars.green}
 bar-used-foreground-1 = ${vars.yellow}
@@ -224,7 +224,7 @@ bar-volume-foreground-6 = #ff5555
 bar-volume-gradient = false
 bar-volume-indicator = "|"
 bar-volume-fill = "="
-bar-volume-empty = "-"
+bar-volume-empty = "="
 bar-volume-empty-foreground = ${vars.xgrey5}
 
 [module/temperature]
