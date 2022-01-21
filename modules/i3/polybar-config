@@ -85,6 +85,40 @@ modules-right = aqi {% for iface in polybar.networks -%} {{iface}} {% endfor -%}
 ;override-redirect = false
 {% endif -%}
 
+{% if display.tertiary is defined -%}
+[bar/tertiary]
+monitor = ${env:MONITOR:{{display.tertiary}}}
+width = 100%
+height = {{polybar.height}}
+radius = 0
+fixed-center = false
+
+background = ${vars.black}
+foreground = ${vars.brightblack}
+
+line-size = ${common.line-size}
+line-color = ${vars.yellow}
+
+border-size = 1
+border-color = ${vars.black}
+
+padding-left = 0
+padding-right = 2
+
+module-margin-left = 1
+module-margin-right = 2
+
+font-0 = ${common.font-0}
+font-1 = ${common.font-1}
+
+modules-left = i3
+modules-center =
+modules-right =
+
+;wm-restack = i3
+;override-redirect = false
+{% endif -%}
+
 [module/xwindow]
 type = internal/xwindow
 label = %title:0:30:...%

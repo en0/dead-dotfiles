@@ -47,7 +47,18 @@ bindsym {{key}} {{val}}
  {% endif -%}
 {% endfor -%}
 
-{% if display.secondary is defined -%}
+{% if display.tertiary is defined -%}
+workspace 1 output {{display.primary}}
+workspace 2 output {{display.primary}}
+workspace 3 output {{display.primary}}
+workspace 4 output {{display.primary}}
+workspace 5 output {{display.primary}}
+workspace 6 output {{display.secondary}}
+workspace 7 output {{display.secondary}}
+workspace 8 output {{display.secondary}}
+workspace 9 output {{display.secondary}}
+workspace 0 output {{display.tertiary}}
+{% elif display.secondary is defined -%}
 workspace 1 output {{display.primary}}
 workspace 2 output {{display.primary}}
 workspace 3 output {{display.primary}}
@@ -64,7 +75,9 @@ workspace 0 output {{display.secondary}}
 exec --no-startup-id {{display.layout}}
 {% endif -%}
 
-{% if display.secondary is defined -%}
+{% if display.tertiary is defined -%}
+exec_always --no-startup-id $HOME/.config/i3/scripts/launch-polybar.sh primary secondary tertiary
+{% elif display.secondary is defined -%}
 exec_always --no-startup-id $HOME/.config/i3/scripts/launch-polybar.sh primary secondary
 {% else -%}
 exec_always --no-startup-id $HOME/.config/i3/scripts/launch-polybar.sh primary

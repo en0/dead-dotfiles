@@ -6,9 +6,16 @@ display:
   primary: DP-2
   layout: xrandr --output HDMI-A-1 --mode 2560x1600
 
+display2:
+  primary: DP-3
+  secondary: HDMI-0
+  tertiary: DP-2
+  layout: xrandr --output HDMI-0 --mode 3840x2160 --pos 0x0 --output DP-2 --mode 2560x1600 --pos 7680x560 --output DP-3 --mode 3840x2160 --pos 3840x0
+
 polybar:
   height: 25
   networks:
+  - enx34d0b8c257b0
   - wlp9s0
   options:
   - battery
