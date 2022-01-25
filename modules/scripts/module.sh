@@ -6,7 +6,7 @@ ENV=$DOTFILES_ENV
 
 _install() {
     create_env
-    ln -s "$MD/scripts.env" "$ENV.d/scripts.env"
+    ls $MD/env | xargs -n1 -i% ln -s $MD/env/% $ENV.d/%
 }
 
 _remove() {

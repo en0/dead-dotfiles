@@ -1,0 +1,13 @@
+alias awsume=". awsume"
+function awsume-fzf() {
+    if [ ! -z "$1" ]
+    then
+        FZF_QUERY="--query=$1"
+    fi
+    result=$(
+        grep -oP '\[profile \K[a-zA-Z0-9-]*' ~/.aws/config | \
+        fzf -1 --preview="grep '\[profile {}\]' -A4 ~/.aws/config" \
+               --preview-window=down:5 $FZF_QUERY
+    )
+    [ ! -z "$result" ] && awsume $result
+}
