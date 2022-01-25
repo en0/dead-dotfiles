@@ -10,7 +10,7 @@ _install() {
 }
 
 _remove() {
-    unlink "$ENV.d/scripts.env"
+    ls $MD/env | xargs -n1 -i% unlink $ENV.d/%
     remove_env
 }
 
