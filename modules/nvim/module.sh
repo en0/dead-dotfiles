@@ -84,12 +84,7 @@ _install() {
     ln -s $CMD/snips             ~/.config/nvim/snips
     nvim --headless +PlugInstall +qall
 
-    echo "[I] You still need to configure Node.js."
-    echo ""
-    echo "[I] Install neovim module - npm install -g neovim"
-    echo "[I] Install tree-sitter module - npm install -g tree-sitter-cli"
-    echo ""
-    echo "[W] It's recomended that you install nvm from dotfiles first"
+    echo "[I] Don't forget to source ~/.dotfiles.env."
 }
 
 _remove() {

@@ -142,7 +142,6 @@ i3:
     "$mod+Shift+7": 'move container to workspace 7'
     "$mod+Shift+8": 'move container to workspace 8'
     "$mod+Shift+9": 'move container to workspace 9'
-    "$mod+Shift+Return": 'exec $HOME/.config/i3/scripts/ws-activate-term.sh i3-sensible-terminal'
     "$mod+Shift+a": 'focus child'
     "$mod+Shift+c": 'reload'
     "$mod+Shift+e": 'exec i3-nagbar -t warning -m "You pressed the exit shortcut. Do you really want to exit i3? This will end your X session." -b "Yes, exit i3" "i3-msg exit"'
