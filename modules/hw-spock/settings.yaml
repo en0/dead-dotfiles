@@ -2,15 +2,16 @@ vars:
   mod: 'Mod1'
   font-0-size: '10'
 
-display:
+display2:
   primary: DP-2
+  #primary: eDP-1
   layout: xrandr --output HDMI-A-1 --mode 2560x1600
 
-display2:
-  primary: DP-3
-  secondary: HDMI-0
+display:
+  primary: HDMI-0
+  secondary: DP-3
   tertiary: DP-2
-  layout: xrandr --output HDMI-0 --mode 3840x2160 --pos 0x0 --output DP-2 --mode 2560x1600 --pos 7680x560 --output DP-3 --mode 3840x2160 --pos 3840x0
+  layout: xrandr --output DP-2 --mode 2560x1600 --output HDMI-0 --mode 3840x2160 --left-of DP-2 --output DP-3 --mode 3840x2160 --left-of HDMI-0
 
 polybar:
   height: 25
