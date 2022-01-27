@@ -28,6 +28,7 @@ colors:
     white:   '0xfce8c3'
 
 font:
+  size: 12
   normal:
     family: DejaVuSansMono Nerd Font Mono
     style: Book
@@ -40,4 +41,3 @@ font:
   bold_italic:
     family: DejaVuSansMono Nerd Font Mono
     style: Bold Oblique
-  size: 12
