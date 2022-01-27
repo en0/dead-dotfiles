@@ -10,6 +10,10 @@ _install_nodejs() {
     npm install -g neovim tree-sitter-cli
 }
 
+_install_fzf() {
+    $CMD/../../dotfiles.sh install fzf
+}
+
 _install_repgrep() {
     curl -L -O https://github.com/BurntSushi/ripgrep/releases/download/13.0.0/ripgrep_13.0.0_amd64.deb
     sudo dpkg -i ripgrep_13.0.0_amd64.deb
@@ -36,6 +40,7 @@ ubuntu_install() {
 
     _install_nodejs
     _install_repgrep
+    _install_fzf
 
     # install vim-plug
     sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
