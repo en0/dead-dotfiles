@@ -7,7 +7,7 @@ NVIM_SHARE_TARGET=/usr/local
 _install_nodejs() {
     $CMD/../../dotfiles.sh install nvm
     source $ENV.d/nvm.env
-    npm install -g neovim tree-sitter-cli
+    npm install -g neovim
 }
 
 _install_fzf() {
@@ -76,7 +76,14 @@ arch_remove() {
     rm -rf "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim
 }
 
+_pre_install() {
+    which tree-sitter > /dev/null && return
+    echo "You must install tree-sitter."
+    exit 1
+}
+
 _install() {
+    _pre_install()
     has_platform ubuntu18 && ubuntu_install
     has_platform ubuntu20 && ubuntu_install
     has_platform ubuntu21 && ubuntu_install

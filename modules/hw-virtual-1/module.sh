@@ -15,11 +15,11 @@ _remove() {
 }
 
 _info() {
-    echo -n "Hardware Profile - Profile for MacBookPro" && \
+    echo -n "Hardware Profile - Profile for Virtual-1" && \
         is_installed $TARGET && \
         echo " - [Installed]" || echo ""
 }
 
-run_if ubuntu18 arch osx
+run_if ubuntu18 ubuntu20 ubuntu21 arch osx
 
 
