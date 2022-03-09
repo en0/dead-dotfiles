@@ -83,7 +83,7 @@ _pre_install() {
 }
 
 _install() {
-    _pre_install()
+    _pre_install
     has_platform ubuntu18 && ubuntu_install
     has_platform ubuntu20 && ubuntu_install
     has_platform ubuntu21 && ubuntu_install
