@@ -40,7 +40,7 @@ i3:
     "XF86MonBrightnessUp": "exec --no-startup-id light -s sysfs/backlight/auto -A 5"
     "XF86MonBrightnessDown": "exec --no-startup-id light -s sysfs/backlight/auto -U 5"
     "XF86Favorites": "exec $HOME/.favorite.sh"
-    "$mod+space": 'exec --no-startup-id "rofi -combi-modi window,drun,calc -dpi 192 -theme rofi -show combi -display-window \\"\\" -display-drun \\"\\" -display-calc \\"\\" -display-combi \\">> \\""'
+    "$mod+p": 'exec --no-startup-id "rofi -combi-modi window,drun,calc -dpi 192 -theme rofi -show combi -display-window \\"\\" -display-drun \\"\\" -display-calc \\"\\" -display-combi \\">> \\""'
 
 startup:
   - setxkbmap -option caps:swapescape
