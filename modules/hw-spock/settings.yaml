@@ -2,21 +2,24 @@ vars:
   mod: 'Mod1'
   font-0-size: '10'
 
-display2:
-  primary: DP-2
-  #primary: eDP-1
-  layout: xrandr --output HDMI-A-1 --mode 2560x1600
-
 display:
+  primary: eDP1
+  layout: xrandr --output eDP1 --auto
+
+display1:
+  primary: DP-2
+  layout: xrandr --output DP-2 --auto
+
+display3:
   primary: HDMI-0
-  secondary: DP-3
-  tertiary: DP-2
-  layout: xrandr --output DP-2 --mode 2560x1600 --output HDMI-0 --mode 3840x2160 --left-of DP-2 --output DP-3 --mode 3840x2160 --left-of HDMI-0
+  secondary: DP-2
+  tertiary: DP-3
+  layout: xrandr --output DP-0 --off --output DP-1 --off --output HDMI-0 --mode 3840x2160 --pos 3840x0 --rotate normal --output DP-2 --mode 2560x1600 --pos 7680x0 --rotate normal --output DP-3 --mode 3840x2160 --pos 0x0 --rotate normal --output DP-4 --off
 
 polybar:
   height: 25
   networks:
-  - enx34d0b8c257b0
+  - enp0s13f0u2u4u4
   - wlp9s0
   options:
   - battery
@@ -34,9 +37,10 @@ i3:
     "$mod+XF86MonBrightnessDown": "exec --no-startup-id light -s sysfs/leds/tpacpi::kbd_backlight -r -U 1"
     "XF86AudioMute": "exec --no-startup-id pactl get-default-sink | xargs -I{} pactl set-sink-mute {} toggle"
     "XF86AudioMicMute": "exec --no-startup-id pactl get-default-source | xargs -I{} pactl set-source-mute {} toggle"
-    "XF86MonBrightnessUp": "exec --no-startup-id light -s sysfs/backlight/auto -r -A 5"
-    "XF86MonBrightnessDown": "exec --no-startup-id light -s sysfs/backlight/auto -r -U 5"
+    "XF86MonBrightnessUp": "exec --no-startup-id light -s sysfs/backlight/auto -A 5"
+    "XF86MonBrightnessDown": "exec --no-startup-id light -s sysfs/backlight/auto -U 5"
     "XF86Favorites": "exec $HOME/.favorite.sh"
+    "$mod+space": 'exec --no-startup-id "rofi -combi-modi window,drun,calc -dpi 192 -theme rofi -show combi -display-window \\"\\" -display-drun \\"\\" -display-calc \\"\\" -display-combi \\">> \\""'
 
 startup:
   - setxkbmap -option caps:swapescape

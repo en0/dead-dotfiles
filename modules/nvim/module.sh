@@ -54,16 +54,16 @@ ubuntu_remove() {
 }
 
 arch_install() {
-    sudo pacman -Syu neovim python python2 python2-virtualenv
-    sudo install -o root -g root -m 755 -d $NVIM_SHARE_TARGET/share/nvim
+    #sudo pacman -Syu neovim python
+    #sudo install -o root -g root -m 755 -d $NVIM_SHARE_TARGET/share/nvim
 
     # install python2 virtual env
-    sudo python2 -m virtualenv $NVIM_SHARE_TARGET/share/nvim/python2
-    sudo $NVIM_SHARE_TARGET/share/nvim/python2/bin/pip install pynvim
+    #sudo python2 -m virtualenv $NVIM_SHARE_TARGET/share/nvim/python2
+    #sudo $NVIM_SHARE_TARGET/share/nvim/python2/bin/pip install pynvim
 
     # install python3 virtual env
-    sudo python3 -m venv $NVIM_SHARE_TARGET/share/nvim/python3
-    sudo $NVIM_SHARE_TARGET/share/nvim/python3/bin/pip install pynvim
+    #sudo python3 -m venv $NVIM_SHARE_TARGET/share/nvim/python3
+    #sudo $NVIM_SHARE_TARGET/share/nvim/python3/bin/pip install pynvim
 
     # install vim-plug
     sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
