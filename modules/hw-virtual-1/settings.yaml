@@ -1,0 +1,12 @@
+vars:
+  mod: 'Mod4'
+  font-0-size: '10'
+
+display:
+  primary: Virtual-1
+  layout: echo "No layout command specified"
+
+polybar:
+  height: 25
+  networks:
+  - ens3
