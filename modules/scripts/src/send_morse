@@ -1,0 +1,104 @@
+#!/usr/bin/env python3
+
+from time import sleep
+from argparse import ArgumentParser
+
+DEFAULT_LED_FILE_PATH="/sys/class/leds/tpacpi::lid_logo_dot/brightness"
+IGAP = 0.1
+SGAP = 0.3
+LGAP = 0.7
+
+end_letter = lambda : sleep(SGAP - IGAP)
+end_word = lambda : sleep(LGAP - SGAP - IGAP)
+
+def dit():
+    with open(DEFAULT_LED_FILE_PATH, "w") as fd:
+        fd.write('1\n')
+    sleep(IGAP)
+    with open(DEFAULT_LED_FILE_PATH, "w") as fd:
+        fd.write('0\n')
+    sleep(IGAP)
+
+
+def dah():
+    with open(DEFAULT_LED_FILE_PATH, "w") as fd:
+        fd.write('1\n')
+    sleep(SGAP)
+    with open(DEFAULT_LED_FILE_PATH, "w") as fd:
+        fd.write('0\n')
+    sleep(IGAP)
+
+CODE_MAP = {
+    "a": [dit, dah],
+    "b": [dah, dit, dit ,dit],
+    "c": [dah, dit, dah, dit],
+    "d": [dah, dit, dit],
+    "e": [dit],
+    "f": [dit, dit, dah, dit],
+    "g": [dah, dah, dit],
+    "h": [dit, dit, dit, dit],
+    "i": [dit, dit],
+    "j": [dit, dah, dah, dah],
+    "k": [dah, dit, dah],
+    "l": [dit, dah, dit, dit],
+    "m": [dah, dah],
+    "n": [dah, dit],
+    "o": [dah, dah, dah],
+    "p": [dit, dah, dah, dit],
+    "q": [dah, dah, dit, dah],
+    "r": [dit, dah, dit],
+    "s": [dit, dit, dit],
+    "t": [dah],
+    "u": [dit, dit, dah],
+    "v": [dit, dit, dit, dah],
+    "w": [dit, dah, dah],
+    "x": [dah, dit, dit, dah],
+    "y": [dah, dit, dah, dah],
+    "z": [dah, dah, dit, dit],
+    "1": [dit, dah, dah, dah, dah],
+    "2": [dit, dit, dah, dah, dah],
+    "3": [dit, dit, dit, dah, dah],
+    "4": [dit, dit, dit, dit, dah],
+    "5": [dit, dit, dit, dit, dit],
+    "6": [dah, dit, dit, dit, dit],
+    "7": [dah, dah, dit, dit, dit],
+    "8": [dah, dah, dah, dit, dit],
+    "9": [dah, dah, dah, dah, dit],
+    "0": [dah, dah, dah, dah, dah],
+    ",": [dah, dah, dit, dit, dah, dah],
+    ".": [dit, dah, dit, dah, dit, dah],
+    "?": [dit, dit, dah, dah, dit, dit],
+    "!": [dah, dit, dah, dit, dah, dah],
+    "-": [dah, dit, dit, dit, dit, dah],
+}
+
+
+def send_message(message):
+    for word in message.split(" "):
+        send_word(word)
+
+
+def send_word(word):
+    for s in word:
+        send_letter(s)
+    end_word()
+
+
+def send_letter(letter):
+    for fn in CODE_MAP.get(letter.lower(), []):
+        fn()
+    end_letter()
+
+
+def get_opts():
+    ap = ArgumentParser()
+    ap.add_argument("MESSAGE", nargs="+")
+    return ap.parse_args()
+
+
+def main():
+    opts = get_opts()
+    send_message(" ".join(opts.MESSAGE))
+
+if __name__ == '__main__':
+    main()
