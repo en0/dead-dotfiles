@@ -2,7 +2,10 @@
 
 local gl = require('galaxyline')
 local gls = gl.section
-gl.short_line_list = {'LuaTree','vista','dbui'}
+gl.short_line_list = {
+    'LuaTree', 'vista', 'dbui', 'startify', 'term', 'nerdtree', 'fugitive',
+    'fugitiveblame', 'plug', 'NvimTree', 'DiffviewFiles'
+}
 
 local colors = {
   bg = '#282c34',
@@ -50,7 +53,7 @@ gls.left[1] = {
                           ['!']  = colors.red,
                           t = colors.red}
       vim.api.nvim_command('hi GalaxyViMode guibg='..mode_color[vim.fn.mode()])
-      return '   NeoVim '
+      return '   NeoVim '..vim.fn.mode()
     end,
     separator = ' ',
     separator_highlight = {colors.yellow,function()
@@ -74,7 +77,10 @@ gls.left[2]= {
 
 gls.left[3]= {
   FileName = {
-    provider = {'FileName'},
+    provider = function()
+      return vim.fn.expand("%:F")
+    end,
+
     separator = '',
     separator_highlight = {colors.bg,colors.bg},
     highlight = {colors.grey,colors.bg}
