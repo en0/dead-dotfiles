@@ -3,35 +3,20 @@ vars:
   font-1-size: '12'
 
 display:
-  primary: HDMI-2
-  secondary: DP-1
-  layout: xrandr --output DP-1 --left-of HDMI-2
+  primary: HDMI2
+  secondary: DP1
+  layout: xrandr --output DP1 --mode 1920x1080 --left-of HDMI2
 
 polybar:
   networks:
-  - br1
+  - enp1s0
   - enp2s0
-
-  options:
-  - kube-tools
 
 i3:
   options:
-  - kube-tools
   - gaps
 
-  # modes:
-  # - name: devbox
-  #   type: mode
-  #   label: 'devbox'
-  #   rebind: true
-  #   bindings:
-  #     "$mod+Return": 'exec ssh devbox alacritty'
-  #     "$mod+p": 'exec ssh devbox rofi -theme glue_pro_blue -show drun'
-
   bindings:
-    #"$mod+b": 'mode "devbox"'
-    #"$mod+Shift+b": 'mode "default"'
-    "$mod+Shift+Return": 'exec gnome-terminal -- ssh devbox'
+    "$mod+Shift+Return": 'exec i3-sensible-terminal -- ssh devbox'
     "$mod+Shift+p": 'exec ssh devbox rofi -theme glue_pro_blue -show drun'
     "$mod+p": 'exec --no-startup-id "rofi -font \\"DejaVu Sans Mono 6\\" -combi-modi window,drun,calc -dpi 192 -theme rofi -show combi -display-window \\"\\" -display-drun \\"\\" -display-calc \\"\\" -display-combi \\">> \\""'
