@@ -17,6 +17,6 @@ i3:
   - gaps
 
   bindings:
-    "$mod+Shift+Return": 'exec i3-sensible-terminal -- ssh devbox'
+    "$mod+Shift+Return": 'exec i3-sensible-terminal -e zsh -c "ssh devbox"'
     "$mod+Shift+p": 'exec ssh devbox rofi -theme glue_pro_blue -show drun'
     "$mod+p": 'exec --no-startup-id "rofi -font \\"DejaVu Sans Mono 6\\" -combi-modi window,drun,calc -dpi 192 -theme rofi -show combi -display-window \\"\\" -display-drun \\"\\" -display-calc \\"\\" -display-combi \\">> \\""'
