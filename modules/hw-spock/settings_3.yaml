@@ -1,14 +1,8 @@
 vars:
-  mod0: 'Mod4'
-  mod: 'Mod1'
+  mod: 'Mod4'
   font-0-size: '10'
 
 display:
-  primary: eDP1
-  layout: xrandr --output eDP1 --auto
-
-display0:
-  get_displays: echo 12345
   primary: HDMI-1-0
   secondary: DP-1-2
   tertiary: eDP1
