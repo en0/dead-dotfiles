@@ -1,5 +1,6 @@
 vars:
   mod: 'Mod1'
+  #mod: 'Mod4'
   font-0-size: '10'
 
 display:
@@ -31,6 +32,3 @@ i3:
     "XF86MonBrightnessDown": "exec --no-startup-id light -s sysfs/backlight/auto -U 5"
     "XF86Favorites": "exec $HOME/.favorite.sh"
     "$mod+p": 'exec --no-startup-id "rofi -combi-modi window,drun,calc -dpi 192 -theme rofi -show combi -display-window \\"\\" -display-drun \\"\\" -display-calc \\"\\" -display-combi \\">> \\""'
-
-startup:
-  - setxkbmap -option caps:swapescape
