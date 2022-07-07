@@ -83,7 +83,7 @@ _pre_install() {
 }
 
 _install() {
-    _pre_install
+    # _pre_install
     has_platform ubuntu18 && ubuntu_install
     has_platform ubuntu20 && ubuntu_install
     has_platform ubuntu21 && ubuntu_install
@@ -113,4 +113,4 @@ _info() {
         echo " - [Installed]" || echo ""
 }
 
-run_if ubuntu18 ubuntu20 ubuntu21 arch osx
+run_if ubuntu18 ubuntu20 ubuntu21 ubuntu22 arch osx

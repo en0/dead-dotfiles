@@ -6,11 +6,11 @@ ENV=$DOTFILES_ENV
 
 _install() {
     create_env
-    ls $MD/env | xargs -n1 -i% ln -s $MD/env/% $ENV.d/%
+    ls $MD/env | xargs -i% ln -s $MD/env/% $ENV.d/%
 }
 
 _remove() {
-    ls $MD/env | xargs -n1 -i% unlink $ENV.d/%
+    ls $MD/env | xargs -i% unlink $ENV.d/%
     remove_env
 }
 
@@ -20,4 +20,4 @@ _info() {
         echo " - [Installed]" || echo ""
 }
 
-run_if ubuntu18 ubuntu20 ubuntu21 arch osx
+run_if ubuntu18 ubuntu20 ubuntu21 ubuntu22 arch osx

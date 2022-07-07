@@ -25,4 +25,4 @@ _info() {
         echo " - [Installed]" || echo ""
 }
 
-run_if ubuntu18 ubuntu20 ubuntu21 arch osx
+run_if ubuntu18 ubuntu20 ubuntu21 ubuntu22 arch osx
