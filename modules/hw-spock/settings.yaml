@@ -12,13 +12,13 @@ display0:
   primary: HDMI-1-0
   secondary: DP-1-2
   tertiary: eDP1
-  layout: xrandr --output HDMI-1-0 --mode 3840x2160 --left-of eDP1 --output DP-1-2 --mode 3840x2160 --left-of HDMI-1-0
+  layout: echo 1
+  #layout: xrandr --output HDMI-1-0 --mode 3840x2160 --left-of eDP1 --output DP-1-2 --mode 3840x2160 --left-of HDMI-1-0
 
 polybar:
   height: 25
   networks:
-  - enp0s13f0u2u4u4
-  - wlp9s0
+  - wlan0
   options:
   - battery
   - microphone
@@ -40,5 +40,3 @@ i3:
     "XF86Favorites": "exec $HOME/.favorite.sh"
     "$mod+p": 'exec --no-startup-id "rofi -combi-modi window,drun,calc -dpi 192 -theme rofi -show combi -display-window \\"\\" -display-drun \\"\\" -display-calc \\"\\" -display-combi \\">> \\""'
 
-startup:
-  - setxkbmap -option caps:swapescape
