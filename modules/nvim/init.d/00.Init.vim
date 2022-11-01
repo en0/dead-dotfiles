@@ -1,6 +1,6 @@
 " Do i still need this in neovim 0.5+?
-let g:python_host_prog='/usr/local/share/nvim/python2/bin/python'
-let g:python3_host_prog='/usr/local/share/nvim/python3/bin/python'
+"let g:python_host_prog='/usr/local/share/nvim/python2/bin/python'
+"let g:python3_host_prog='/usr/local/share/nvim/python3/bin/python'
 
 "syntax on
 set nu

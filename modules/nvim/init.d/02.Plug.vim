@@ -16,7 +16,10 @@ call plug#begin()
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
 
     " https://github.com/glepnir/galaxyline.nvim
-    Plug 'glepnir/galaxyline.nvim' , {'branch': 'main'}
+    " Plug 'glepnir/galaxyline.nvim' , {'branch': 'main'}
+
+    " Plug 'glepnir/galaxyline.nvim' , {'branch': 'main'}
+    Plug 'nvim-lualine/lualine.nvim'
 
     " https://github.com/kyazdani42/nvim-tree.lua
     Plug 'kyazdani42/nvim-web-devicons'
@@ -40,9 +43,10 @@ call plug#begin()
     " https://github.com/rhysd/git-messenger.vim
     Plug 'rhysd/git-messenger.vim'
 
-    Plug 'srcery-colors/srcery-vim'
-
     " https://github.com/vim-test/vim-test
     Plug 'vim-test/vim-test'
+
+    " https://github.com/EdenEast/nightfox.nvim
+    Plug 'EdenEast/nightfox.nvim'
 
 call plug#end()

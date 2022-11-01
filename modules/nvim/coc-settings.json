@@ -13,6 +13,7 @@
             "settings": {}
         }
     },
+    "suggest.noselect": true,
     "suggest.completionItemKindLabels": {
         "method": "  ",
         "function": "  ",
