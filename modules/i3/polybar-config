@@ -42,7 +42,7 @@ modules-center =
 {% if display.secondary is defined -%}
 modules-right = {% if 'microphone' in polybar.options -%} microphone {% endif -%} pulseaudio filesystem memory cpu temperature date
 {% else -%}
-modules-right = {% if 'microphone' in polybar.options -%} microphone {% endif -%} pulseaudio filesystem memory cpu temperature {% for iface in polybar.networks -%} {{iface}} {% endfor -%} {% if 'battery' in polybar.options -%} battery {% endif -%} date
+modules-right = gpu {% if 'microphone' in polybar.options -%} microphone {% endif -%} pulseaudio filesystem memory cpu temperature {% for iface in polybar.networks -%} {{iface}} {% endfor -%} {% if 'battery' in polybar.options -%} battery {% endif -%} date
 {% endif -%}
 
 tray-position = right
@@ -79,7 +79,7 @@ font-1 = ${common.font-1}
 
 modules-left = i3
 modules-center =
-modules-right = weather aqi {% for iface in polybar.networks -%} {{iface}} {% endfor -%} date
+modules-right = gpu {% for iface in polybar.networks -%} {{iface}} {% endfor -%} date
 
 ;wm-restack = i3
 ;override-redirect = false
@@ -276,25 +276,18 @@ compositing-background = xor
 margin-top = 0
 margin-bottom = 0
 
-[module/aqi]
+[module/gpu]
 type = custom/script
 interval = 300
-exec = $HOME/.config/i3/scripts/aqi.sh
+exec = $HOME/.config/i3/scripts/gpu.sh
 content = loading...
 
-format = AQI:<label>
+format-prefix = " "
+format = <label>
 format-padding = 0
-label = %output:0:15:...%
+label = %output%
 
-[module/weather]
-type = custom/script
-interval = 300
-exec = $HOME/.config/i3/scripts/weather.sh
-content = loading...
-
-format = F:<label>
-format-padding = 0
-label = %output:0:15:...%
+click-left = $HOME/.config/i3/scripts/prime-select.sh
 
 [module/sep]
 type = custom/text
